@@ -1,0 +1,1970 @@
+{
+  "generatedAt": "2026-08-04T03:47:28.991Z",
+  "brokers": [
+    {
+      "id": "tsfutures",
+      "name": "台新期貨",
+      "site": "https://www.tsfutures.com.tw/",
+      "board": "https://www.tsfutures.com.tw/news-futures",
+      "mode": "browser",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "bdf21ee920860a08",
+          "title": "元大銀行期貨入金服務暫停通知",
+          "url": "https://www.tsfutures.com.tw/news-futures-content?no=1270",
+          "date": "2026-07-30",
+          "category": "期貨公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "f80e41e3b22e943b",
+          "title": "本公司各項業務服務電話",
+          "url": "https://www.tsfutures.com.tw/news-futures-content?no=1268",
+          "date": "2026-07-28",
+          "category": "期貨公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "94b6dbf0513bf673",
+          "title": "1盎司黃金(1OZ )交易及行情服務說明",
+          "url": "https://www.tsfutures.com.tw/news-futures",
+          "date": "2026-07-24",
+          "category": "期貨公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "1fd44723240777c2",
+          "title": "2026年8月份亞洲市場假期",
+          "url": "https://www.tsfutures.com.tw/news-futures",
+          "date": "2026-07-24",
+          "category": "假期公告",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "7a1d780edab9ba53",
+          "title": "元大銀行期貨入金服務暫停通知",
+          "url": "https://www.tsfutures.com.tw/news-futures-content?no=1263",
+          "date": "2026-07-22",
+          "category": "期貨公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "2e8d4f30054052b9",
+          "title": "中國信託期貨入金服務暫停通知",
+          "url": "https://www.tsfutures.com.tw/news-futures-content?no=1260",
+          "date": "2026-07-21",
+          "category": "期貨公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "a71bc10abe869991",
+          "title": "香港交易所(HKEX)T+1盤優化措施公告",
+          "url": "https://www.tsfutures.com.tw/news-futures",
+          "date": "2026-07-03",
+          "category": "國外交易公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "4182f4d7b4a8ca5a",
+          "title": "國外期貨保證金一覽表",
+          "url": "https://www.tsfutures.com.tw/news-futures",
+          "date": "2026-06-30",
+          "category": "期貨公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "c2f63b65148af025",
+          "title": "敬請客戶於臨櫃匯款時,務必填寫正確新戶名:台新期貨股份有限公司客戶保證金專戶",
+          "url": "https://www.tsfutures.com.tw/news-futures-content?no=1215",
+          "date": "2026-06-10",
+          "category": "期貨公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "dea0586344a2187a",
+          "title": "【重要公告】為維護交易安全,謹防詐騙及代操行為聲明",
+          "url": "https://www.tsfutures.com.tw/news-futures-content?no=1149",
+          "date": "2026-04-27",
+          "category": "期貨公告",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "2e7f0f9b91e2e660",
+          "title": "臺灣期貨交易所-公告調整「臺股期貨」、「股票期貨暨選擇權契約」交易人部位限制數。",
+          "url": "https://www.taifex.com.tw/file/taifex/CHINESE/11/attach/%E5%8F%B0%E6%9C%9F%E4%BA%A4%E5%AD%97%E7%AC%AC1150200683%E8%99%9F.pdf",
+          "date": "2026-04-15",
+          "category": "國內交易公告",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "7b97fea0a401507d",
+          "title": "國外期貨實物交割代為沖銷作業-TCE",
+          "url": "https://www.tsfutures.com.tw/news-futures",
+          "date": "2026-04-05",
+          "category": "國外交易公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "078864539f0a99d1",
+          "title": "國外期貨不適用當日沖銷商品",
+          "url": "https://www.tsfutures.com.tw/news-futures",
+          "date": "2026-04-03",
+          "category": "國外交易公告",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "095da8a7e1e322ab",
+          "title": "國外期貨實物交割代為沖銷作業",
+          "url": "https://www.tsfutures.com.tw/news-futures",
+          "date": "2026-04-03",
+          "category": "國外交易公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "cb4c48a71e1c780b",
+          "title": "國外期貨報價揭露方式",
+          "url": "https://www.tsfutures.com.tw/news-futures",
+          "date": "2026-04-03",
+          "category": "國外交易公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "4920f930353d88c0",
+          "title": "澄清公告:台新期貨同仁胡芷瑗之Instagram遭偽冒,特此澄清公告。",
+          "url": "https://www.tsfutures.com.tw/news-futures-content?no=1049",
+          "date": "2026-03-24",
+          "category": "期貨公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "a51c1b47948b46d3",
+          "title": "臺灣期貨交易所-公告葡萄王期貨及華南金選擇權等12檔股票選擇權,自115 年3月19日起終止上市。",
+          "url": "https://www.taifex.com.tw/file/taifex/CHINESE/11/attach/%E5%8F%B0%E6%9C%9F%E4%BA%A4%E5%AD%97%E7%AC%AC1150200474%E8%99%9F(%E5%90%AB%E9%99%84%E4%BB%B6).pdf",
+          "date": "2026-03-18",
+          "category": "國內交易公告",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "347f98410c662b0e",
+          "title": "2026年美國夏令交易時間",
+          "url": "https://www.tsfutures.com.tw/news-futures",
+          "date": "2026-03-05",
+          "category": "國外交易公告",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "34741096e7d5b610",
+          "title": "臺灣期貨交易所-公告調整「臺指選擇權」、「股票期貨暨選擇權契約」交易人部位限制數。",
+          "url": "https://www.taifex.com.tw/file/taifex/CHINESE/11/attach/115%E9%83%A8%E4%BD%8D%E9%99%90%E5%88%B6Q1%E8%AA%BF%E6%95%B4%E5%85%AC%E5%91%8A.pdf",
+          "date": "2026-01-21",
+          "category": "國內交易公告",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "4152029db91205d2",
+          "title": "CME調整貴金屬期貨保證金計算方式",
+          "url": "https://www.tsfutures.com.tw/news-futures",
+          "date": "2026-01-13",
+          "category": "國外交易公告",
+          "tag": "保證金",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "ibff",
+      "name": "國票期貨",
+      "site": "https://www.ibff.com.tw/",
+      "board": "https://www.ibff.com.tw/news/default.aspx?xy=1&xt=1",
+      "mode": "http",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "a3872f554c973b37",
+          "title": "1150803《臺灣期貨交易所公告調整南電期貨(LYF)、小型南電期貨(QSF)及合晶期貨(PLF)保證金適用比例》",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=bddd1a92-8c93-4009-b00d-cc039d84e23a",
+          "date": "2026-08-03",
+          "category": "國票訊息",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "108ad8a6fde7a866",
+          "title": "2026/08/03國外期貨保證金調整公告",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=c91ff9b3-a15c-499a-8fce-b80a7591d0e7",
+          "date": "2026-08-03",
+          "category": "國票訊息",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "8ea8c853a28112c8",
+          "title": "1150731《臺灣期貨交易所公告調整台勝科期貨(QDF)保證金適用比例》",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=a9675c44-d17b-44a7-bbb3-f8f9531d127e",
+          "date": "2026-07-31",
+          "category": "國票訊息",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "3c54174a1e7c0f45",
+          "title": "2026年8月份亞洲假期交易公告",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=2932f3fe-0e78-47b0-9306-c8cd031b29d0",
+          "date": "2026-07-27",
+          "category": "國票訊息",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "615f0e85fff2d8da",
+          "title": "1150724《臺灣期貨交易所公告調整合晶期貨(PLF)保證金適用比例》",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=27d65bc4-0f33-42af-b389-5bac86985de1",
+          "date": "2026-07-24",
+          "category": "國票訊息",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "eea293bdf2ebcbd0",
+          "title": "1150722《臺灣期交所公告延長信昌電期貨(PKF)保證金調整期間》",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=59b501a6-9b7b-4fd7-8b7c-e1a8a061e2b3",
+          "date": "2026-07-22",
+          "category": "國票訊息",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "36ed0db36592d690",
+          "title": "【國票期貨】因國際金融市場震盪,敬請您留意自身帳戶權益數變化,並提早存入足額資金以降低風險,確保帳戶安全。",
+          "url": "https://www.ibff.com.tw/news/default.aspx?xy=1&xt=1",
+          "date": "2026-07-22",
+          "category": "國票訊息",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "edbc849f50e84cbe",
+          "title": "臺灣期貨交易所公告延長華新科期貨(HBF)保證金調整期間",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=99f4be1b-c597-40f6-822b-76dca0a8b480",
+          "date": "2026-07-22",
+          "category": "國票訊息",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "a00ff76014f10863",
+          "title": "1150721《臺灣期貨交易所公告調整中纖期貨契約(EYF)所有月份保證金適用比例》,並自115年7月22日一般交易時段結束後起實施!",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=ac56d1a6-99ff-436e-b7ae-079fb2cca550",
+          "date": "2026-07-21",
+          "category": "國票訊息",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "7ed1b22beb905c59",
+          "title": "1150717《臺灣期貨交易所公告調整信昌電期貨(PKF)保證金適用比例》",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=ed148af0-4c59-4999-9973-7d9b6df9a8db",
+          "date": "2026-07-17",
+          "category": "國票訊息",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "d9ffd413293de077",
+          "title": "1150716《臺灣期貨交易所公告調整華新科期貨(HBF)保證金適用比例》",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=60c0bcc6-9554-4852-8f64-5c5245f9c6f8",
+          "date": "2026-07-16",
+          "category": "交易訊息",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "368f3bdd444c7912",
+          "title": "期貨詐騙案例蒐報分享公告(202605)",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=0765043f-3de7-4986-880d-88d8454b9fe8",
+          "date": "2026-05-20",
+          "category": "反詐訊息",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "e8f7f373338746d1",
+          "title": "期貨詐騙案例蒐報分享公告(202604)",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=86efad4c-07ea-4dbe-94cc-cf94179974b9",
+          "date": "2026-04-27",
+          "category": "反詐訊息",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "9f80d750ef3d4c49",
+          "title": "期貨詐騙案例蒐報分享公告(202603)",
+          "url": "https://www.ibff.com.tw/news/pdf.aspx?ID=d3b4a84c-6d06-42c3-82a2-1327136b9a77",
+          "date": "2026-04-21",
+          "category": "反詐訊息",
+          "tag": "防詐",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "dcnf",
+      "name": "大昌期貨",
+      "site": "https://www.dcnf.com.tw/",
+      "board": "https://www.dcnf.com.tw/news_02.htm",
+      "mode": "http",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "86462d908dff5fd6",
+          "title": "香港交易所T+1開盤時間異動通知",
+          "url": "https://www.dcnf.com.tw/news/20260629.pdf",
+          "date": "2026-06-29",
+          "category": "交易公佈欄",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "7e137212decfae1e",
+          "title": "《美股》美國獨立紀念日7月3日(五)休市",
+          "url": "https://www.dcnf.com.tw/news/20260703.pdf",
+          "date": "2026-06-26",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "9a1a005a0a961e4d",
+          "title": "7月亞洲市場假期公告",
+          "url": "https://www.dcnf.com.tw/news/20260701.pdf",
+          "date": "2026-06-24",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "0979462eda446aee",
+          "title": "《美股》六月節6月19日(五)休市",
+          "url": "https://www.dcnf.com.tw/news/20260619.pdf",
+          "date": "2026-06-19",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "1e3e970771861ded",
+          "title": "6月亞洲市場假期公告",
+          "url": "https://www.dcnf.com.tw/news/202606.pdf",
+          "date": "2026-05-22",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "739bd67582a7df42",
+          "title": "《美股》陣亡將士紀念日5月25日(一)休市",
+          "url": "https://www.dcnf.com.tw/news/20260525.pdf",
+          "date": "2026-05-18",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "ce83992dba12bdf0",
+          "title": "5月亞洲市場假期公告",
+          "url": "https://www.dcnf.com.tw/news/202605.pdf",
+          "date": "2026-04-29",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "77a86298510e4192",
+          "title": "0401盤後臺灣期貨交易所保證金調整公告",
+          "url": "https://www.dcnf.com.tw/news/20260401.pdf",
+          "date": "2026-04-01",
+          "category": "交易公佈欄",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "1d5a23e6c05deb24",
+          "title": "0311盤後臺灣期貨交易所保證金調整公告",
+          "url": "https://www.dcnf.com.tw/news/20260311.pdf",
+          "date": "2026-03-11",
+          "category": "交易公佈欄",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "5ba774013b781974",
+          "title": "0226盤後臺灣期貨交易所保證金調整公告",
+          "url": "https://www.dcnf.com.tw/news/20260226.pdf",
+          "date": "2026-02-26",
+          "category": "交易公佈欄",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "5714614edb9e15d8",
+          "title": "20260224盤後臺灣期貨交易所保證金調整公告",
+          "url": "https://www.dcnf.com.tw/news/20260224.pdf",
+          "date": "2026-02-24",
+          "category": "交易公佈欄",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "211542354acdae7e",
+          "title": "20260211盤後臺灣期貨交易所保證金調整公告",
+          "url": "https://www.dcnf.com.tw/news/20260211.pdf",
+          "date": "2026-02-11",
+          "category": "交易公佈欄",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "929d8525fb8b7c93",
+          "title": "2月亞洲市場假期公告",
+          "url": "https://www.dcnf.com.tw/news/202602.pdf",
+          "date": "2026-01-28",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "51ece4f7a02b06c3",
+          "title": "20260127盤後臺灣期貨交易所保證金調整公告",
+          "url": "https://www.dcnf.com.tw/news/20260127.pdf",
+          "date": "2026-01-27",
+          "category": "交易公佈欄",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "3e92b2f6b242c943",
+          "title": "《美股》馬丁路德紀念日1月19日(一)休市",
+          "url": "https://www.dcnf.com.tw/news/20260119Holiday.pdf",
+          "date": "2026-01-13",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "2c0a50b07c4f0505",
+          "title": "20251231盤後臺灣期貨交易所保證金調整公告",
+          "url": "https://www.dcnf.com.tw/news/20251231.pdf",
+          "date": "2025-12-31",
+          "category": "交易公佈欄",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "a8fe32b7d3191f9d",
+          "title": "2026年1月亞洲市場假期公告",
+          "url": "https://www.dcnf.com.tw/news/20260101AsiaHoliday.pdf",
+          "date": "2025-12-26",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "37c17444bf3302f9",
+          "title": "《美股》新年假期公告2026年1月1日(四)休市",
+          "url": "https://www.dcnf.com.tw/news/20260101Holiday.pdf",
+          "date": "2025-12-24",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "3dacffac9dc259b9",
+          "title": "《美股》聖誕假期12月25日(四)休市",
+          "url": "https://www.dcnf.com.tw/news/20251225ChristmasHoliday.pdf",
+          "date": "2025-12-16",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "8cb87260753588f7",
+          "title": "12月亞洲市場假期公告",
+          "url": "https://www.dcnf.com.tw/news/202512Closedday.pdf",
+          "date": "2025-11-26",
+          "category": "交易公佈欄",
+          "tag": "假期",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "fubon",
+      "name": "富邦期貨",
+      "site": "https://www.fubon.com/futures/home/",
+      "board": "https://www.fubon.com/futures/home/tradeinfo/news",
+      "mode": "browser",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "876adb8d8f29fdb3",
+          "title": "CME Group 調整商品保證金 (08/04 開盤生效)、ICE-US、ICE-EU 調整商品保證金 (08/03 收盤生效)",
+          "url": "https://www.fubon.com/futures/home/UploadFile/type01/202608/649c1b23-f666-4364-944e-90abefdfe49a.pdf",
+          "date": "2026-08-04",
+          "category": "最新公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "32288c27a710b023",
+          "title": "新加坡交易所(SGX)調整保證金( 2026年8月4日生效)",
+          "url": "https://www.fubon.com/futures/home/UploadFile/type01/202608/3d68fcc0-df90-4bff-9028-4738daffe4ee.pdf",
+          "date": "2026-08-04",
+          "category": "最新公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "71b827eb23bbd98b",
+          "title": "新加坡交易所(SGX)調整保證金( 2026年8月3日生效)",
+          "url": "https://www.fubon.com/futures/home/UploadFile/type01/202608/903aeb7e-8860-4311-92a2-ba0deda2d02b.pdf",
+          "date": "2026-08-03",
+          "category": "最新公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "37bf8892e28c8a21",
+          "title": "臺灣期交所公告:調整南電期貨(LYF)、小型南電期貨(QSF)及合晶期貨(PLF)保證金適用比例,請查照。",
+          "url": "https://www.taifex.com.tw/file/taifex/CHINESE/11/attach/%E5%85%AC%E5%91%8A(58).pdf",
+          "date": "2026-08-03",
+          "category": "最新公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "be1605ad15630611",
+          "title": "香港交易所(HKF)調整保證金( 2026年8月5日生效)",
+          "url": "https://www.fubon.com/futures/home/UploadFile/type01/202608/1e641e3d-69f9-4d51-973f-d3bf659b2b4b.pdf",
+          "date": "2026-08-03",
+          "category": "最新公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "61df11265a7a4a36",
+          "title": "CME Group 調整商品保證金 (08/03 開盤生效)、ICE-US、ICE-EU 調整商品保證金 (07/31 收盤生效)",
+          "url": "https://www.fubon.com/futures/home/UploadFile/type01/202608/9513f5b6-cb39-418f-bf26-4a1142308a80.pdf",
+          "date": "2026-08-01",
+          "category": "最新公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "aa6e6ef8a957f8e5",
+          "title": "【重要公告】客戶交易健檢報告服務終止通知",
+          "url": "https://www.fubon.com/futures/home/tradeinfo/news/e6428d70-cdfe-40a5-a714-6dfd9f845608",
+          "date": "2026-06-09",
+          "category": "最新公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "116116568728f3ad",
+          "title": "<置頂公告>「個人海外所得課徵基本稅額」申報應注意事宜",
+          "url": "https://www.fubon.com/futures/home/tradeinfo/news/95373265-25c6-48a2-9053-cf4124fead46",
+          "date": "2025-03-10",
+          "category": "最新公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "d99e1663fb765aaa",
+          "title": "<置頂公告>交易系統異常應變措施",
+          "url": "https://www.fubon.com/futures/home/tradeinfo/news/952c40ce-1a68-46e7-91d1-8867058826d9",
+          "date": "2025-02-17",
+          "category": "最新公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "756bd7053bd9c3c2",
+          "title": "<置頂公告>國外交易所裁罰案",
+          "url": "https://www.fubon.com/futures/home/tradeinfo/news/c370b3e1-6ed1-4c0a-addc-f469b255d218",
+          "date": "2025-02-01",
+          "category": "最新公告",
+          "tag": "其他",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "concord",
+      "name": "康和期貨",
+      "site": "https://www.concordfutures.com.tw/",
+      "board": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/List/New/1",
+      "mode": "browser",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "c2c4ee50664d48c1",
+          "title": "8/10、8/13辦理2026城鎮韌性(防空)演習期間行動網路降速演練",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/New/1/5544",
+          "date": "2026-08-03",
+          "category": "最新消息",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "f392b36dcfc18f05",
+          "title": "國外保證金調整",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/3/5545",
+          "date": "2026-08-03",
+          "category": "保證金公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "7f6493ea1fa9e103",
+          "title": "國內保證金調整(08/03收盤後調整)",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/3/5540",
+          "date": "2026-07-31",
+          "category": "保證金公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "1407a5e989ef1898",
+          "title": "國外保證金調整",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/3/5539",
+          "date": "2026-07-31",
+          "category": "保證金公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "f7be5b6ebed16cdc",
+          "title": "國外保證金調整",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/3/5538",
+          "date": "2026-07-30",
+          "category": "保證金公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "be686f4c8a13454b",
+          "title": "國外保證金調整",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/3/5537",
+          "date": "2026-07-29",
+          "category": "保證金公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "94fdf3f6caf5c05d",
+          "title": "臺灣期交所公告新增5檔股票期貨契約暨其上市相關事宜",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/1/5533",
+          "date": "2026-07-28",
+          "category": "國內交易公告",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "88acd736548319da",
+          "title": "國外保證金調整",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/3/5534",
+          "date": "2026-07-28",
+          "category": "保證金公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "4767a30145f1ef87",
+          "title": "國外保證金調整",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/3/5532",
+          "date": "2026-07-27",
+          "category": "保證金公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "aedaf5b8053ebad0",
+          "title": "國內保證金調整(07/27收盤後調整)",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/3/5531",
+          "date": "2026-07-27",
+          "category": "保證金公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "98e8e704953ad252",
+          "title": "臺灣期貨交易所公告寶雅期貨及小型寶雅期貨契約調整事宜",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/1/5527",
+          "date": "2026-07-24",
+          "category": "國內交易公告",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "13625c65552b5c81",
+          "title": "國外保證金調整",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/3/5528",
+          "date": "2026-07-24",
+          "category": "保證金公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "d5f068fd2c4af863",
+          "title": "國外保證金調整",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/3/5526",
+          "date": "2026-07-23",
+          "category": "保證金公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "04361eab903c1833",
+          "title": "亞洲期貨市場2026年8月份休市公告",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/4/5520",
+          "date": "2026-07-21",
+          "category": "假期公告",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "f56579f0fcb87cea",
+          "title": "2026年7月24日開始CME交易所1盎司黃金交易時間異動公告",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/2/5508",
+          "date": "2026-07-16",
+          "category": "國外交易公告",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "edb9a46c91141329",
+          "title": "CME交易所實物交割之微型指數選擇權商品下市公告",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/2/5505",
+          "date": "2026-07-14",
+          "category": "國外交易公告",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "91d3098d89caa8fd",
+          "title": "香港交易所HKEX-T+1時段優化措施公告",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/2/5472",
+          "date": "2026-07-03",
+          "category": "國外交易公告",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "51c9dc4839bcaf29",
+          "title": "臺灣期貨交易所115年度上半年新制說明",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/1/5469",
+          "date": "2026-07-02",
+          "category": "國內交易公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "15eb59874307b045",
+          "title": "開放ICE-SG交易所-小型美元指數期貨(SDX)為可交易商品",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/2/5465",
+          "date": "2026-07-01",
+          "category": "國外交易公告",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "a0ae30ae4ce16533",
+          "title": "2026美國獨立紀念日假期表",
+          "url": "https://www.concordfutures.com.tw/ConcordFutures/Bulletin/Content/Trade/4/5455",
+          "date": "2026-06-23",
+          "category": "假期公告",
+          "tag": "假期",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "mega",
+      "name": "兆豐期貨",
+      "site": "https://www.megafutures.com.tw/",
+      "board": "https://www.megafutures.com.tw/emegaFutures/bulletinList.do",
+      "mode": "browser",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "6c999781ba409cae",
+          "title": "2026城鎮韌性(防空)演習:行動網路降速演練暨本公司電子交易服務公告",
+          "url": "https://www.megafutures.com.tw/emegaFutures/bulletin.do?id=20260731093123490094",
+          "date": "2026-08-01",
+          "category": "公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "804ad01f65b9886c",
+          "title": "115.08.31(ㄧ) ICE 倫敦銀行假期交易時間調整公告",
+          "url": "https://www.megafutures.com.tw/emegaFutures/bulletin.do?id=20260731002345433210",
+          "date": "2026-07-31",
+          "category": "外交易",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "d47ff27b25864f74",
+          "title": "證券周邊單位近期製作防範金融投資詐騙相關素材-115.07",
+          "url": "https://www.emega.com.tw/emega/upload/bulletin/6b171b1222000000a894.pdf",
+          "date": "2026-07-29",
+          "category": "防詐宣導",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "06faf79fa4e36fd3",
+          "title": "【重要公告】新版「API 電子交易風險預告書暨使用同意書」簽署通知",
+          "url": "https://www.megafutures.com.tw/emegaFutures/bulletin.do?id=20260723133704681269",
+          "date": "2026-07-23",
+          "category": "公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "443203e52b072293",
+          "title": "調整南亞期貨(CAF)等91檔股票類契約保證金適用比例並自115年7月16日一般交易時段結束後起實施",
+          "url": "https://www.taifex.com.tw/cht/11/announcement",
+          "date": "2026-07-16",
+          "category": "保證金",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "3bade026334e605a",
+          "title": "詐騙案件蒐報-非法提供期貨顧問業務(2026-06-23)",
+          "url": "https://www.megafutures.com.tw/emegaFutures/bulletin.do?id=20260714103704817903",
+          "date": "2026-07-14",
+          "category": "防詐宣導",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "8bb65622b5558559",
+          "title": "詐騙案件蒐報-地下期貨於threads非法招攬期貨業務(2026-06-23)",
+          "url": "https://www.megafutures.com.tw/emegaFutures/bulletin.do?id=20260714103138704226",
+          "date": "2026-07-14",
+          "category": "防詐宣導",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "8ea01908a292ce25",
+          "title": "詐騙案件蒐報-非法提供期貨顧問業務(2026-06-23)",
+          "url": "https://www.megafutures.com.tw/emegaFutures/bulletin.do?id=20260709114813766029",
+          "date": "2026-07-09",
+          "category": "防詐宣導",
+          "tag": "防詐",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "spf",
+      "name": "永豐期貨",
+      "site": "https://www.spf.com.tw/",
+      "board": "https://www.spf.com.tw/spfBulletin/list15c3486648f00000b9bdb734bebce404.html",
+      "mode": "http",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "7e453277aabcb3b2",
+          "title": "115/8/4臺灣期貨交易所調整保證金公告",
+          "url": "https://www.spf.com.tw/upload/sinopac/spfBulletinContent/19fc6a3fe480000034ef.pdf",
+          "date": "2026-08-04",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "445fe5c65ec30622",
+          "title": "【期貨公告】調整信昌電(PKF)、南電(LYF)小型南電(QSF)期貨保證金",
+          "url": "https://www.spf.com.tw/spfBulletin/15c3486648f00000b9bdb734bebce404_20260804084448360000000000000443.html",
+          "date": "2026-08-04",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "24ca7844e7db7d06",
+          "title": "國外交易所訊息分享2026/7/20~2026/7/26",
+          "url": "https://www.spf.com.tw/upload/sinopac/spfBulletinContent/19fc501c1f00000079a2.pdf",
+          "date": "2026-08-03",
+          "category": "交易公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "d3f87f60881b7083",
+          "title": "【期貨公告】2026防空演習網路降速提醒",
+          "url": "https://www.spf.com.tw/spfBulletin/15c3486648f00000b9bdb734bebce404_20260803095142582000000000000086.html",
+          "date": "2026-08-03",
+          "category": "交易公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "62e924aed34183ae",
+          "title": "【期貨公告】調整華新科(HBF)期貨保證金",
+          "url": "https://www.spf.com.tw/spfBulletin/15c3486648f00000b9bdb734bebce404_20260803121159512000000000000912.html",
+          "date": "2026-08-03",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "e9f52831ff24e7bb",
+          "title": "Cme Group、IUS、IUK交易所保證金調整公告,8/3盤後生效",
+          "url": "https://www.spf.com.tw/foreignFuturesMargin/page_3.html",
+          "date": "2026-08-03",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "dcb0149eb8ee6c8b",
+          "title": "Cme Group、IUS、IUK交易所保證金調整公告,7/31盤後生效",
+          "url": "https://www.spf.com.tw/foreignFuturesMargin/page15cc5a5eaab000009de79e6f7a8684af_3.html",
+          "date": "2026-07-31",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "3ca79cadc44b6e2b",
+          "title": "115/8/3臺灣期貨交易所調整保證金公告",
+          "url": "https://www.spf.com.tw/upload/sinopac/spfBulletinContent/19fb720fd87000009666.pdf",
+          "date": "2026-07-31",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "cc91ae40274572e6",
+          "title": "{外期公告}I-LEADER富時台灣近月和中國A50近月報價異常,請直接選擇看八月份報價,如有任何疑",
+          "url": "https://www.spf.com.tw/spfBulletin/15c3486d4b2000000d7352af8ffdf569_20260731181909652000000000000863.html",
+          "date": "2026-07-31",
+          "category": "最新訊息",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "0a74e8c64f1ee85d",
+          "title": "【期貨】115/8/1(六)08:00~18:00線上加開帳戶及憑證申請、展期及註銷暫停服務",
+          "url": "https://www.spf.com.tw/spfBulletin/15c3486648f00000b9bdb734bebce404_20260729101018740000000000000244.html",
+          "date": "2026-07-29",
+          "category": "交易公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "0dd6cf4d07bfcced",
+          "title": "Cme Group、IUS、IUK、LME交易所保證金調整公告,7/29盤後生效",
+          "url": "https://www.spf.com.tw/foreignFuturesMargin/page_3.html",
+          "date": "2026-07-29",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "db50337c608c2dca",
+          "title": "115/8/3期交所新增5檔股票期貨契約",
+          "url": "https://www.spf.com.tw/upload/sinopac/spfBulletinContent/19fa2a5aa0400000883c.pdf",
+          "date": "2026-07-28",
+          "category": "交易公告",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "4843e1e913c08746",
+          "title": "Cme Group、IUS、IUK交易所保證金調整公告,7/28盤後生效",
+          "url": "https://www.spf.com.tw/foreignFuturesMargin/page_3.html",
+          "date": "2026-07-28",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "2dbb7a1ed04ff09c",
+          "title": "[期貨]目前手機豐全球技術分析異常,請先參考其他報價軟體,若有任何疑問請來電交易室(02)23829",
+          "url": "https://www.spf.com.tw/spfBulletin/15c3486648f00000b9bdb734bebce404_20260727205115613000000000000645.html",
+          "date": "2026-07-27",
+          "category": "交易公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "0b8d75ce486b4c60",
+          "title": "[期貨]電子平台豐元寶下單匣顯示異常報價正常,請改用其它平台登入",
+          "url": "https://www.spf.com.tw/spfBulletin/15c3486648f00000b9bdb734bebce404_20260727064955571000000000000975.html",
+          "date": "2026-07-27",
+          "category": "交易公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "a45cff3a2db7c424",
+          "title": "【期貨】電子平台豐元寶下單匣顯示問題已恢復",
+          "url": "https://www.spf.com.tw/spfBulletin/15c3486648f00000b9bdb734bebce404_20260727084437240000000000000043.html",
+          "date": "2026-07-27",
+          "category": "交易公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "6c6931ca1aa4d109",
+          "title": "【內期】目前手機iLeader \"微台指8月-觸價幫手\"下單功能異常",
+          "url": "https://www.spf.com.tw/spfBulletin/15c3486648f00000b9bdb734bebce404_20260727100554863000000000000370.html",
+          "date": "2026-07-27",
+          "category": "交易公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "cac4c6faaeae72ca",
+          "title": "Cme Group、IUS、IUK交易所保證金調整公告,7/27盤後生效",
+          "url": "https://www.spf.com.tw/foreignFuturesMargin/page15cc5a5eaab000009de79e6f7a8684af_3.html",
+          "date": "2026-07-27",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "a4e678c7041eec8f",
+          "title": "115/7/27臺灣期貨交易所調整保證金公告",
+          "url": "https://www.spf.com.tw/upload/sinopac/spfBulletinContent/19f93427ff2000003ddf.pdf",
+          "date": "2026-07-25",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "cb0a2da5ad28f86a",
+          "title": "Cme Group、IUS、IUK交易所保證金調整公告,7/24盤後生效",
+          "url": "https://www.spf.com.tw/foreignFuturesMargin/page_3.html",
+          "date": "2026-07-24",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "kgi",
+      "name": "凱基期貨",
+      "site": "https://www.kgif.com.tw/zh-tw",
+      "board": "https://www.kgif.com.tw/zh-tw/stock-market-overview/market-news",
+      "mode": "http",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "34b257071b6b3960",
+          "title": "國外保證金調整通知_生效日2026年8月4日",
+          "url": "https://www.kgif.com.tw/zh-tw/-/media/files/kgif/dealingroom/margin-query/margin_table_20260804.pdf?h=480&w=1180&hash=65AF958F4AB45983EC911EA7DA507D89",
+          "date": "2026-08-04",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "fa64a385e4eca58f",
+          "title": "國外商品保證金預告表_2026年8月4日",
+          "url": "https://www.kgif.com.tw/zh-tw/-/media/files/kgif/dealingroom/margin-query/prelim_margintable_20260804.pdf?h=480&w=1180&hash=808E03C6C1EC2196D6D15020443D4838",
+          "date": "2026-08-04",
+          "category": "交易公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "46c1d29981c875b9",
+          "title": "【台灣期交所公告】股票期貨/選擇權契約調整",
+          "url": "https://www.taifex.com.tw/cht/11/adjustContract",
+          "date": "2026-08-03",
+          "category": "最新消息",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "81278ed0aee14e66",
+          "title": "【台灣期交所公告】更新「期貨商得受託從事期貨交易之國外期貨交易契約」",
+          "url": "https://www.kgif.com.tw/zh-tw/stock-market-overview/market-news/market-news-detail?id=c990a19995484667b7bdb2383580cb69",
+          "date": "2026-08-03",
+          "category": "最新消息",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "076a353fed66183e",
+          "title": "國內保證金調整通知_2026年08月04日一般交易時段結束後調整",
+          "url": "https://www.kgif.com.tw/zh-tw/-/media/files/kgif/settlement/_20260804.pdf?h=480&w=1180&hash=121B903A69B4FC8843CF0E9161897C6F",
+          "date": "2026-08-03",
+          "category": "保證金調整公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "38945eaa75009519",
+          "title": "【台灣期交所公告】新增智通期貨、華城期貨、小型華城期貨、小型京元電子期貨及小型日月光投控期貨等5檔股票期貨契約暨其上市相關事宜",
+          "url": "https://www.taifex.com.tw/file/taifex/CHINESE/11/attach/%E5%8F%B0%E6%9C%9F%E4%BA%A4%E5%AD%97%E7%AC%AC1150201495%E8%99%9F%E5%85%AC%E5%91%8A.pdf",
+          "date": "2026-07-31",
+          "category": "最新消息",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "bf0d97cf66af7082",
+          "title": "8/2(日) 09:00~17:00 凱基證券暨期貨各電子平台配合主管機關進行資安演練公告",
+          "url": "https://www.kgif.com.tw/zh-tw/stock-market-overview/market-news/market-news-detail?id=7b48adcef772421a8962086f75e4a6c1",
+          "date": "2026-07-31",
+          "category": "最新消息",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "cb85936f391f9ad5",
+          "title": "臺灣期貨交易所新上市商品保證金通知-生效日2026年08月03日",
+          "url": "https://www.kgif.com.tw/zh-tw/-/media/files/kgif/settlement/_20260803.pdf?h=480&w=1180&hash=6B62E00EF507BB75ECB344191729238F",
+          "date": "2026-07-31",
+          "category": "新商品上架公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "6cf3603e4f43a848",
+          "title": "國外盤新增商品上線_MSCI世界指數期貨(美元計價) (FMWO)_EUREX歐洲期貨交易所",
+          "url": "https://www.kgif.com.tw/zh-tw/-/media/files/kgif/dealingroom/new-contract/20260731fmwo.pdf?h=480&w=1180&hash=5DB642B59DD3FC164C2A93ADE2EEAB86",
+          "date": "2026-07-31",
+          "category": "最新消息",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "ad9b59906d9ca82a",
+          "title": "8/2(日) 09:00~17:00 全球交易中心配合主管機關進行資安演練公告",
+          "url": "https://www.kgif.com.tw/zh-tw/stock-market-overview/market-news/market-news-detail?id=3d127547cbcd4afdabb383fc2abc67bc",
+          "date": "2026-07-28",
+          "category": "最新消息",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "6d8cd374de790559",
+          "title": "7/27(一) 期貨API測試系統維護作業公告",
+          "url": "https://www.kgif.com.tw/zh-tw/stock-market-overview/market-news/market-news-detail?id=e7e35f385ca942e59d52a94f172dcc0f",
+          "date": "2026-07-24",
+          "category": "最新消息",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "fec9fc71c3e9d0f9",
+          "title": "入金銀行恢復公告(元大)",
+          "url": "https://www.kgif.com.tw/zh-tw/stock-market-overview/market-news/market-news-detail?id=2b38e6b68d3d4b25af5304a2de5c47ee",
+          "date": "2026-07-20",
+          "category": "最新消息",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "1eddbd4c2b8b6a38",
+          "title": "2026年7月24日- CME Group 1盎司黃金(1OZ) 交易時段公告",
+          "url": "https://www.kgif.com.tw/zh-tw/-/media/files/kgif/dealingroom/market-news/20260724--cme-group-1-1oz.pdf?h=480&w=1180&hash=333748176760A4F6AA8FC16BAEDC418E",
+          "date": "2026-07-16",
+          "category": "交易公告",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "a5d164caa575f02b",
+          "title": "MultiCharts例行性維護,將暫停登入與使用",
+          "url": "https://www.kgif.com.tw/zh-tw/stock-market-overview/market-news/market-news-detail?id=504ce64b5f5b4e62a24006fe7a0fefd0",
+          "date": "2026-07-15",
+          "category": "最新消息",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "330864499e3e275d",
+          "title": "亞洲假期休市公告",
+          "url": "https://www.kgif.com.tw/zh-tw/stock-market-overview/market-news/market-news-detail?id=ccdf32c752384223a784035d68506527",
+          "date": "2026-07-10",
+          "category": "最新消息",
+          "tag": "假期",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "entrust",
+      "name": "華南期貨",
+      "site": "https://ft.entrust.com.tw/",
+      "board": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletin.do",
+      "mode": "http",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "7a57a9c6c3f057b1",
+          "title": "期交所調整保證金:合晶<再次處置>南科(小型)<處置>",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=6b32029b67000000cded1f39f9b11844",
+          "date": "2026-08-03",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "a0f2b763b47ab680",
+          "title": "【交易公告】期交所調整台勝科期貨保證金<再次處置>",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=6b21d6e45b000000de77c3615e76ebdb",
+          "date": "2026-07-31",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "a145472ae9898793",
+          "title": "臺灣期貨交易所最新公告專區",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=687517de7d000000e859f78edb6c666c",
+          "date": "2026-07-30",
+          "category": "重要",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "38d8da37127149d3",
+          "title": "【交易公告】新加坡交易所與香港交易所結算價",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=6b1e4f5899000000d2df6ee59b8ea69c",
+          "date": "2026-07-30",
+          "category": "公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "22a9cfb708fe87da",
+          "title": "【交易公告】期交所新增5檔個股期貨[8/3生效]",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=6b12c23e74000000a1c25418c204f8fa",
+          "date": "2026-07-27",
+          "category": "公告",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "57bf567fcf18329b",
+          "title": "【交易公告】期交所調整合晶期貨保證金<處置>",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=6b0c1508480000004b61b9fd3df0dcc4",
+          "date": "2026-07-24",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "5f4a37566ad9818d",
+          "title": "國內盤後時段選擇權組合拆解功能 服務調整說明",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=6af305f104000000d7258be0540f2a33",
+          "date": "2026-07-22",
+          "category": "重要",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "ec5b8ab44ca680d8",
+          "title": "華南期貨提醒您簽署「國內盤後交易時段風險警示」",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=6af2aa0307000000b3e343381a3ca6c7",
+          "date": "2026-07-22",
+          "category": "公告",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "9de70f66764559bb",
+          "title": "【交易公告】期交所調整中纖期貨保證金",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=6af2df846a0000007c1d68c0d56b6d11",
+          "date": "2026-07-21",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "c018d6e139b0318d",
+          "title": "臺灣期貨交易所115年6月19日(星期五)端午節 休市1日",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=6a3907da5e0000007870bd4deaaf2edb",
+          "date": "2026-06-16",
+          "category": "公告",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "d9dc7458116d3bad",
+          "title": "CME Group 交易所部分期貨商品調整保證金計算方式",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=6721e464af0000006bc8b66589c3589f",
+          "date": "2026-01-13",
+          "category": "公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "7561e2d23932e53b",
+          "title": "【國外公告】國外下單口數上限",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=6696888978000000a61a76bd29cff811",
+          "date": "2025-12-17",
+          "category": "公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "efca2c50f6448f8b",
+          "title": "【國內公告】個股期貨暫停交易請查閱期交所公告",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=65e1f47c2e00000067170bb7d2950487",
+          "date": "2025-11-12",
+          "category": "公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "b16ee00bb28d3ec4",
+          "title": "【公告】配合防制洗錢政策提供資料",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=644a53c793000000ec65a8ed704cda06",
+          "date": "2025-08-25",
+          "category": "公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "80ecaff138fb4eb5",
+          "title": "【交易公告】ICE交易所報價訂閱通知",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=63a5341329000000b2799611ef69f057",
+          "date": "2025-07-24",
+          "category": "公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "dfb9b551a89ca03f",
+          "title": "交易人委託單處理原則及保證金收取說明",
+          "url": "https://ft.entrust.com.tw/upload/entrust/bulletin/%E4%BA%A4%E6%98%93%E4%BA%BA%E5%A7%94%E8%A8%97%E5%96%AE%E8%99%95%E7%90%86%E5%8E%9F%E5%89%87%E5%8F%8A%E4%BF%9D%E8%AD%89%E9%87%91%E6%94%B6%E5%8F%96%E9%A2%A8%E9%9A%AA%E9%A0%90%E5%91%8A%E6%9B%B8.pdf",
+          "date": "2025-07-24",
+          "category": "公告",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "be3e58e99d1b5348",
+          "title": "【重要通知】配合主管機關及本公司規範,請於111年4月18日前,重新辦理「年度資力證明徵信作業」",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=62adc4389b000000238084c587f0da58",
+          "date": "2025-05-22",
+          "category": "重要",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "2ba742fddd2c3193",
+          "title": "國外期貨當沖交易注意事項",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=627a3b9b8d000000a7f21ae5934b4976",
+          "date": "2025-02-26",
+          "category": "宣導",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "d422d5a2d3752abf",
+          "title": "【交易公告】本公司自110年9月6日起,實施國內外期貨帳戶合併交易額度控管機制",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=62b4979ee0000000d6f8c0b6c4b7310e",
+          "date": "2021-08-20",
+          "category": "公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "171777d7c2aca493",
+          "title": "【交易公告】新增API服務下單異常標準及異常狀況處理作業程序。",
+          "url": "https://ft.entrust.com.tw/entrustFutures/announcement/bulletinInner.do?id=62b498fe9f000000e9d5064e2f851702",
+          "date": "2020-01-01",
+          "category": "公告",
+          "tag": "系統",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "cathay",
+      "name": "國泰期貨",
+      "site": "https://www.cathayfut.com.tw/",
+      "board": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost_more&page=1",
+      "mode": "http",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "1b71ec36c70c5396",
+          "title": "【國內期貨】調整南電期貨(LYF)等保證金",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24553",
+          "date": "2026-08-03",
+          "category": "國內期貨",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "dacf181f4dbf9346",
+          "title": "【國內期貨】調整台勝科期貨(QDF)商品保證金",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24552",
+          "date": "2026-07-31",
+          "category": "國內期貨",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "1916d28436d02e0a",
+          "title": "【國內期貨】20260731 週到期契約最後結算價",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24551",
+          "date": "2026-07-31",
+          "category": "國內期貨",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "5c70671077d2b583",
+          "title": "【防詐提醒】慎防金融投資詐騙,保護您的資產安全",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24550",
+          "date": "2026-07-30",
+          "category": "防詐提醒",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "0ba7fa44a3a01b7e",
+          "title": "【國內期貨】20260729週到期契約最後結算價",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24549",
+          "date": "2026-07-29",
+          "category": "國內期貨",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "06b37cee4cf12b5b",
+          "title": "【國內期貨】新增5檔「股票期貨契約」",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24548",
+          "date": "2026-07-27",
+          "category": "國內期貨",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "0a3cbd2e1e0346cb",
+          "title": "【海外期貨】8月期間實物交割到期提醒",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24547",
+          "date": "2026-07-25",
+          "category": "海外期貨",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "7a8eabc047d58ba6",
+          "title": "【國內期貨】調整合晶期貨(PLF)保證金",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24546",
+          "date": "2026-07-24",
+          "category": "國內期貨",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "e3e05d2cd6d41630",
+          "title": "【海外期貨】2026年8月亞洲假期公告",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24545",
+          "date": "2026-07-24",
+          "category": "海外期貨",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "4f47f1a4eb1a244f",
+          "title": "【國內期貨】20260724 週到期契約最後結算價",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24544",
+          "date": "2026-07-24",
+          "category": "國內期貨",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "4718017ebd5f5cd2",
+          "title": "【國內期貨】延長信昌電期貨(PKF)保證金調整期間",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24543",
+          "date": "2026-07-22",
+          "category": "國內期貨",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "664901c6b37f08ac",
+          "title": "【國內期貨】20260722週到期契約最後結算價",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24542",
+          "date": "2026-07-22",
+          "category": "國內期貨",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "6979618f07453728",
+          "title": "【國內期貨】延長華新科期貨(HBF)保證金調整期間",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24541",
+          "date": "2026-07-21",
+          "category": "國內期貨",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "33a3de7f7e8f4523",
+          "title": "【國內期貨】調整中纖期貨(EYF)保證金",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24540",
+          "date": "2026-07-21",
+          "category": "國內期貨",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "49c1f58b95d49fda",
+          "title": "【海外期貨】CME 1盎司黃金(1OZ)交易時段公告",
+          "url": "https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost&i_index=24539",
+          "date": "2026-07-20",
+          "category": "海外期貨",
+          "tag": "假期",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "capital",
+      "name": "群益期貨",
+      "site": "https://www.capitalfutures.com.tw/zh-tw",
+      "board": "https://www.capitalfutures.com.tw/zh-tw/news/latest",
+      "mode": "http",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "7fb7bf2122f452ce",
+          "title": "香港交易所保證金調整通知-8月5日開盤前生效",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3504/%E9%A6%99%E6%B8%AF%E4%BA%A4%E6%98%93%E6%89%80%E4%BF%9D%E8%AD%89%E9%87%91%E8%AE%8A%E6%9B%B4_260805.pdf",
+          "date": "2026-08-04",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "8a2e404fde95e20e",
+          "title": "【期貨公告】期貨入金安泰銀行將於8/4(星期二) 15:30 至17:00調整及重啟系統",
+          "url": "https://www.capitalfutures.com.tw/zh-tw/news/article?newsid=3499",
+          "date": "2026-08-04",
+          "category": "入金通知",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "073030316ee9ec28",
+          "title": "海外期貨保證金調整通知2026年8月3日",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3503/Margin20260803.pdf",
+          "date": "2026-08-04",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "3e1d17be8fb4ac58",
+          "title": "【期交所公告】調整南電期貨(LYF)、小型南電期貨(QSF)及合晶期貨(PLF)保證金適用比例",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3500/%E5%85%AC%E5%91%8A(58).pdf",
+          "date": "2026-08-03",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "f84975a4fcb78759",
+          "title": "東京金融交易所保證金調整通知2026年8月3日開盤生效",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3497/Margin20260803-TFX.pdf",
+          "date": "2026-08-01",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "0dc3f84f9ea9eae8",
+          "title": "2026防空演習網路降速提醒",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3495/2026%E9%99%8D%E9%80%9F%E6%BC%94%E7%B7%B4%E5%85%AC%E5%91%8A.pdf",
+          "date": "2026-07-31",
+          "category": "平台公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "f725beebab79858b",
+          "title": "【期交所公告】調整台勝科期貨(QDF)保證金適用比例",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3494/%E5%8F%B0%E6%9C%9F%E7%B5%90%E5%AD%97%E7%AC%AC11503016871%E8%99%9F%E5%87%BD.pdf",
+          "date": "2026-07-31",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "5ddc31c049189b1d",
+          "title": "香港交易所保證金調整通知2026年8月3日開盤前生效",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3493/%E9%A6%99%E6%B8%AF%E4%BA%A4%E6%98%93%E6%89%80%E4%BF%9D%E8%AD%89%E9%87%91%E8%AE%8A%E6%9B%B4_260803.pdf",
+          "date": "2026-07-31",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "3b774f770b1d96cd",
+          "title": "韓國交易所保證金調整通知2026年8月3日開盤生效",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3491/%E9%9F%93%E5%9C%8B%E4%BA%A4%E6%98%93%E6%89%80%E4%BF%9D%E8%AD%89%E9%87%91%E8%AE%8A%E6%9B%B4_260803.pdf",
+          "date": "2026-07-30",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "86610de5f4327339",
+          "title": "【期交所公告】115年8月3日新增智通期貨、華城期貨、小型華城期貨、小型京元電子期貨及小型日月光投控期貨等5檔股票期貨契約暨其上市相關事宜",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3484/%E5%8F%B0%E6%9C%9F%E4%BA%A4%E5%AD%97%E7%AC%AC1150201495%E8%99%9F%E5%85%AC%E5%91%8A.pdf",
+          "date": "2026-07-28",
+          "category": "交易規則",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "f75654e489a0b1d2",
+          "title": "【期交所公告】公告延長信昌電期貨(PKF)保證金調整期間。",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3469/%E5%8F%B0%E6%9C%9F%E7%B5%90%E5%AD%97%E7%AC%AC11503016171%E8%99%9F.pdf",
+          "date": "2026-07-22",
+          "category": "保證金調整",
+          "tag": "保證金",
+          "pinned": false
+        },
+        {
+          "id": "e1770d4f9ae27018",
+          "title": "【契約調整公告】寶雅期貨(代號RPF)和小型寶雅期貨(代號RRF)契約調整及停止交易事宜",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3465/%E5%AF%B6%E9%9B%85%E6%9C%9F%E8%B2%A8%EF%BC%88%E4%BB%A3%E8%99%9FRPF%EF%BC%89%E5%92%8C%E5%B0%8F%E5%9E%8B%E5%AF%B6%E9%9B%85%E6%9C%9F%E8%B2%A8%EF%BC%88%E4%BB%A3%E8%99%9FRRF%EF%BC%89%E5%A5%91%E8%AA%BF%E5%8F%8A%E5%81%9C%E6%AD%A2%E4%BA%A4%E6%98%93.pdf",
+          "date": "2026-07-21",
+          "category": "交易規則",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "4bb740ba0f1683e1",
+          "title": "【期交所公告】調整「臺股期貨」及「股票期貨暨選擇權契約」交易人部位限制數",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3459/%E5%8F%B0%E6%9C%9F%E4%BA%A4%E5%AD%97%E7%AC%AC1150201386%E8%99%9F.pdf",
+          "date": "2026-07-15",
+          "category": "交易規則",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "db3f41a5acbfaa75",
+          "title": "公告CME 1盎司黃金(1OZ)自7月24日(Central Time)起延長交易時段",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3445/%E5%85%AC%E5%91%8ACME%201%E7%9B%8E%E5%8F%B8%E9%BB%83%E9%87%91%EF%BC%881OZ%EF%BC%89%E8%87%AA7%E6%9C%8827%E6%97%A5%E8%B5%B7%E5%BB%B6%E9%95%B7%E4%BA%A4%E6%98%93%E6%99%82%E6%AE%B5.pdf",
+          "date": "2026-07-14",
+          "category": "交易規則",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "1d4f382ed6564d5d",
+          "title": "王富興非本公司同仁並冒用「群益期貨」名義,佯稱代操虛擬貨幣(幣託/BitoPro)進行詐騙,特此澄清公告。",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3407/%E3%80%90%E6%BE%84%E6%B8%85%E5%85%AC%E5%91%8A%E3%80%91%E7%8E%8B%E5%AF%8C%E8%88%88%E9%9D%9E%E7%BE%A4%E7%9B%8A%E6%9C%9F%E8%B2%A8%E5%93%A1%E5%B7%A5%EF%BC%8C%E7%89%B9%E6%AD%A4%E6%BE%84%E6%B8%85%E5%85%AC%E5%91%8A%E3%80%82%20.pdf",
+          "date": "2026-07-02",
+          "category": "澄清公告",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "a97806ddb3fd3797",
+          "title": "CME微型S&P選擇權及微型NQ選擇權(實物交割)下市公告",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3395/CME%E4%BA%A4%E6%98%93%E6%89%80%E5%85%AC%E5%91%8A260626.pdf",
+          "date": "2026-06-26",
+          "category": "交易規則",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "d5e891993aabaf03",
+          "title": "【轉知】內政部識詐宣導影片及圖片等素材下載連結",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3380/%E3%80%90%E8%BD%89%E7%9F%A5%E3%80%91%E5%85%A7%E6%94%BF%E9%83%A8%E8%AD%98%E8%A9%90%E5%AE%A3%E5%B0%8E%E5%BD%B1%E7%89%87%E5%8F%8A%E5%9C%96%E7%89%87%E7%AD%89%E7%B4%A0%E6%9D%90%E4%B8%8B%E8%BC%89%E9%80%A3%E7%B5%90.pdf",
+          "date": "2026-06-24",
+          "category": "防詐資訊",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "1e0f280fce478d96",
+          "title": "【轉知】證券交易所彙整近期防範金融投資詐騙相關素材",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3330/%E3%80%90%E8%BD%89%E7%9F%A5%E3%80%91%E8%AD%89%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80%E5%BD%99%E6%95%B4%E5%85%B6%E8%88%87%E5%91%A8%E9%82%8A%E5%96%AE%E4%BD%8D%E8%BF%91%E6%9C%9F%E8%A3%BD%E4%BD%9C%E4%B9%8B%E3%80%8C%E5%8F%8D%E8%A9%90%E9%A8%99%E7%9B%B8%E9%97%9C%E7%B4%A0%E6%9D%90%E3%80%8D-202606.pdf",
+          "date": "2026-06-09",
+          "category": "防詐資訊",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "21fe4fc772c5ae36",
+          "title": "群益期貨同仁吳晉丞之Instagram遭偽冒,特此澄清公告。",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3127/%E3%80%90%E6%BE%84%E6%B8%85%E5%85%AC%E5%91%8A%E3%80%91%E7%BE%A4%E7%9B%8A%E6%9C%9F%E8%B2%A8%E5%90%8C%E4%BB%81%E5%90%B3%E6%99%89%E4%B8%9EInstagram%E9%81%AD%E5%81%BD%E5%86%92%EF%BC%8C%E7%89%B9%E6%AD%A4%E6%BE%84%E6%B8%85%E5%85%AC%E5%91%8A%E3%80%82.pdf",
+          "date": "2026-04-01",
+          "category": "澄清公告",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "814786ecb28d59d8",
+          "title": "群益期貨同仁林亭吟之Instagram遭偽冒,特此澄清公告。",
+          "url": "https://fsv.capitalfutures.com.tw/file/newsLatest/3117/%E3%80%90%E6%BE%84%E6%B8%85%E5%85%AC%E5%91%8A%E3%80%91%E7%BE%A4%E7%9B%8A%E6%9C%9F%E8%B2%A8%E5%90%8C%E4%BB%81%E6%9E%97%E4%BA%AD%E5%90%9F%E4%B9%8BInstagram%E9%81%AD%E5%81%BD%E5%86%92%EF%BC%8C%E7%89%B9%E6%AD%A4%E6%BE%84%E6%B8%85%E5%85%AC%E5%91%8A%E3%80%82.pdf",
+          "date": "2026-04-01",
+          "category": "澄清公告",
+          "tag": "其他",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "pfcf",
+      "name": "統一期貨",
+      "site": "https://www.pfcf.com.tw/",
+      "board": "https://www.pfcf.com.tw/news",
+      "mode": "http",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "5e33e7701bf95f3d",
+          "title": "【公告】2026年城鎮韌性(防空)演習期間網路降速演練提醒,行動通訊服務可能受到影響",
+          "url": "https://www.pfcf.com.tw/news/detail/8152",
+          "date": "2026-08-03",
+          "category": "公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "8ba7228ee876ba53",
+          "title": "【公告】7/30 06:00已經恢復 雲端智慧單系統異常 今天7/29 12:40起暫停收單 15:30將掛單全部刪除 請使用公告內可使用的系統下單",
+          "url": "https://www.pfcf.com.tw/news/detail/8136",
+          "date": "2026-07-29",
+          "category": "公告",
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "7ab7788805cbad4f",
+          "title": "【公告】新增智通期貨、華城期貨、小型華城期貨、小型京元電子期貨及小型日月光投控期貨等5檔股票期貨契約暨其上市相關事宜。",
+          "url": "https://www.pfcf.com.tw/news/detail/8128",
+          "date": "2026-07-28",
+          "category": "公告",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "a309aea773bede8a",
+          "title": "公告:7/28-e指發登入異常(已恢復)",
+          "url": "https://www.pfcf.com.tw/news/detail/8126",
+          "date": "2026-07-28",
+          "category": null,
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "1fc57e45f8ef8d51",
+          "title": "NYMEX交易所-迷你白銀(QI),可網路交易公告",
+          "url": "https://www.pfcf.com.tw/news/detail/8122",
+          "date": "2026-07-27",
+          "category": null,
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "1c6aa5a0c3a325df",
+          "title": "CBT交易所-微型玉米(MZC)、微型黃豆(MZS),可網路交易公告",
+          "url": "https://www.pfcf.com.tw/news/detail/8121",
+          "date": "2026-07-27",
+          "category": null,
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "b3c11abfcce1974e",
+          "title": "【交易提醒】香港交易所(HKF) T+1盤開盤時間變更",
+          "url": "https://www.pfcf.com.tw/news/detail/7976",
+          "date": "2026-06-30",
+          "category": "交易提醒",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "6e7269b1a9de815f",
+          "title": "【交易提醒】洲際交易所-英國長債(FLG)變更交易時段",
+          "url": "https://www.pfcf.com.tw/news/detail/7789",
+          "date": "2026-05-29",
+          "category": "交易提醒",
+          "tag": "假期",
+          "pinned": false
+        },
+        {
+          "id": "96b6e6e0a9104a35",
+          "title": "SGX交易所-港幣兌美元期貨(HKU) 可網路交易公告",
+          "url": "https://www.pfcf.com.tw/news/detail/7482",
+          "date": "2026-04-01",
+          "category": null,
+          "tag": "系統",
+          "pinned": false
+        },
+        {
+          "id": "6bf32fad6e089356",
+          "title": "CBT交易所-美國超長債選擇權(UBO) 可網路交易公告",
+          "url": "https://www.pfcf.com.tw/news/detail/7477",
+          "date": "2026-04-01",
+          "category": null,
+          "tag": "系統",
+          "pinned": false
+        }
+      ]
+    },
+    {
+      "id": "yuanta",
+      "name": "元大期貨",
+      "site": "https://www.yuantafutures.com.tw/",
+      "board": "https://www.yuantafutures.com.tw/marketinfo_02",
+      "mode": "browser",
+      "fetchedAt": "2026-08-04T03:47:28.991Z",
+      "ok": true,
+      "error": null,
+      "items": [
+        {
+          "id": "07668df4acc243ad",
+          "title": "【訊息通知】美國伊利諾伊州北區聯邦地區法院東部分院有關「2020年5月WTI原油期貨集體訴訟」(May 2020 WTI Futures Class Action)之通知",
+          "url": "https://www.yuantafutures.com.tw/marketinfo_02?n=1&o=&q=26701",
+          "date": "2026-08-03",
+          "category": "重要訊息",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "28e92aaa4ec89e45",
+          "title": "【重要澄清公告】發現不肖人士冒用「元大期貨」名義建置網站,提醒交易人切勿受騙。",
+          "url": "https://www.yuantafutures.com.tw/marketinfo_02?n=1&o=&q=26687",
+          "date": "2026-07-31",
+          "category": "重要訊息",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "e1ca8f6eca7efe68",
+          "title": "【重要澄清公告】有不肖人士偽以「元大證券執行副總經理」名義進行詐騙,特此呼籲民眾勿任意輕信,以免受騙",
+          "url": "https://www.yuantafutures.com.tw/marketinfo_02?n=1&o=&q=26685",
+          "date": "2026-07-31",
+          "category": "重要訊息",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "83841a611d98597b",
+          "title": "【訊息通知】投資人保護中心受理康全公司股票求償事宜",
+          "url": "https://www.yuantafutures.com.tw/marketinfo_02?n=1&o=&q=26681",
+          "date": "2026-07-31",
+          "category": "重要訊息",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "5cfbb2b6458d9af3",
+          "title": "【訊息通知】投資人保護中心受理北基公司股票求償事宜",
+          "url": "https://www.yuantafutures.com.tw/marketinfo_02?n=1&o=&q=26680",
+          "date": "2026-07-31",
+          "category": "重要訊息",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "3a9c1f33ffeb774d",
+          "title": "[ 國際盤後資訊 ]",
+          "url": "https://www.yuantafutures.com.tw/marketinfo_02?n=1&o=&q=26679",
+          "date": "2026-07-31",
+          "category": "重要訊息",
+          "tag": "其他",
+          "pinned": false
+        },
+        {
+          "id": "ed55241ea2660d3a",
+          "title": "利用台指期、海期等全球商品進行即時體驗交流,且推出開戶即送888元開戶金、每日第一筆入金2%回饋,宣稱低門檻操作、見價即成、手續費結構極簡等話術誘騙投資者,並搭配策略訊號推播,吸引投資人加入LINE好友(2026-07-20)",
+          "url": "https://www.yuantafutures.com.tw/marketinfo_02?n=1&o=&q=26672",
+          "date": "2026-07-30",
+          "category": "詐騙案件蒐報",
+          "tag": "防詐",
+          "pinned": false
+        },
+        {
+          "id": "4ad5dde8d15e5991",
+          "title": "【重要訊息】能源類商品下跌價格無限制成交價格可能為「負值」",
+          "url": "https://www.yuantafutures.com.tw/marketinfo_02?n=1&o=&q=7177",
+          "date": "2020-04-21",
+          "category": "重要訊息",
+          "tag": "商品",
+          "pinned": false
+        },
+        {
+          "id": "0fb6a4cb8236c374",
+          "title": "重要訊息_期貨公告",
+          "url": "https://www.yuantafutures.com.tw/marketinfo_02?n=1&o=&q=4462",
+          "date": "2019-07-11",
+          "category": "重要訊息",
+          "tag": "其他",
+          "pinned": false
+        }
+      ]
+    }
+  ]
+}

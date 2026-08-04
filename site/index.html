@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>期貨商公告看板</title>
+    <meta name="description" content="彙整 13 家台灣期貨商官網公告區，一頁看完。" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>📋</text></svg>"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__row">
+        <h1>期貨商公告看板</h1>
+        <p class="updated" id="updated" aria-live="polite"></p>
+      </div>
+
+      <div class="controls">
+        <div class="search">
+          <input
+            id="search"
+            type="search"
+            placeholder="搜尋公告標題… （例如：保證金、南電、休市）"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button id="clear-search" class="ghost" type="button" hidden>清除</button>
+        </div>
+
+        <div class="toggle" role="tablist" aria-label="檢視模式">
+          <button id="view-board" role="tab" aria-selected="true" class="is-on">看板</button>
+          <button id="view-timeline" role="tab" aria-selected="false">時間軸</button>
+        </div>
+      </div>
+
+      <div class="filters">
+        <div class="chips" id="tag-filters" role="group" aria-label="分類篩選"></div>
+        <div class="filters__right">
+          <label class="switch">
+            <input type="checkbox" id="only-new" />
+            <span>只看未讀</span>
+          </label>
+          <button id="mark-all" class="ghost" type="button">全部標為已讀</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <p class="empty" id="empty" hidden>沒有符合條件的公告。</p>
+      <section id="board" class="board"></section>
+      <section id="timeline" class="timeline" hidden></section>
+    </main>
+
+    <footer class="foot">
+      <p>
+        資料由各期貨商官網公告區自動彙整，僅供快速瀏覽；正式內容以各公司官網為準。
+        <span id="broker-errors" class="errors"></span>
+      </p>
+    </footer>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
