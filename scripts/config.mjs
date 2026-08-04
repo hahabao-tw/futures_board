@@ -4,8 +4,9 @@ export const SINCE = '2025-01-01';
 /**
  * 邊緣分類：這些不是交易人日常要看的公告，收進來只會稀釋看板。
  * 比對方式是「分類名稱包含以下任一關鍵字」。
+ * 這份清單會寫進 data.json，由網頁最上方顯示，讓看的人知道少了什麼。
  */
-const EDGE_KEYWORDS = [
+export const EDGE_KEYWORDS = [
   '樂齡',
   '永續',
   '公平待客',

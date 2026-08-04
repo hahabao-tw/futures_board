@@ -12,10 +12,12 @@
     />
   </head>
   <body>
+    <p class="notice" id="excluded-notice"></p>
+
     <header class="topbar">
       <div class="topbar__row">
         <h1>期貨商公告看板</h1>
-        <p class="updated" id="updated" aria-live="polite"></p>
+        <p class="scope" id="scope"></p>
       </div>
 
       <div class="controls">
@@ -40,6 +42,10 @@
         <div class="chips" id="tag-filters" role="group" aria-label="分類篩選"></div>
         <div class="filters__right">
           <label class="switch">
+            <input type="checkbox" id="show-margin" />
+            <span id="show-margin-label">顯示保證金公告</span>
+          </label>
+          <label class="switch">
             <input type="checkbox" id="only-new" />
             <span>只看未讀</span>
           </label>
@@ -55,10 +61,13 @@
     </main>
 
     <footer class="foot">
+      <p id="update-info"></p>
+      <p id="schedule-info"></p>
       <p>
         資料由各期貨商官網公告區自動彙整，僅供快速瀏覽；正式內容以各公司官網為準。
         <span id="broker-errors" class="errors"></span>
       </p>
+      <p>管理員信箱：<a href="mailto:7537@entrust.com.tw">7537@entrust.com.tw</a></p>
     </footer>
 
     <script src="app.js" type="module"></script>

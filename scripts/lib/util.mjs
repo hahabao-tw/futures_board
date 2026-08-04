@@ -97,7 +97,9 @@ export function normaliseTag(rawCategory, title = '') {
 export function dedupe(items) {
   const seen = new Set();
   return items.filter((it) => {
-    const key = `${it.title}|${it.date}`;
+    // Key on the stable id (title + url) rather than title + date: the same
+    // announcement can be listed under several of a broker's categories.
+    const key = it.id ?? `${it.title}|${it.date}`;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -111,7 +113,11 @@ export function dedupe(items) {
  */
 export function sortByDateDesc(items) {
   return items.sort(
-    (a, b) => Number(a.pinned ?? false) - Number(b.pinned ?? false) ||
-      (b.date ?? '').localeCompare(a.date ?? '')
+    (a, b) =>
+      Number(a.pinned ?? false) - Number(b.pinned ?? false) ||
+      (b.date ?? '').localeCompare(a.date ?? '') ||
+      // Same-day announcements are common; break the tie on id so the written
+      // order is reproducible and unchanged runs really do produce no diff.
+      (a.id ?? '').localeCompare(b.id ?? '')
   );
 }

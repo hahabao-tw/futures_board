@@ -1,6 +1,6 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { BROKERS } from './sources/index.mjs';
-import { MAX_ITEMS_PER_BROKER, SINCE, isEdgeCategory } from './config.mjs';
+import { EDGE_KEYWORDS, MAX_ITEMS_PER_BROKER, SINCE, isEdgeCategory } from './config.mjs';
 import { dedupe, itemId, normaliseTag, sortByDateDesc } from './lib/util.mjs';
 
 const OUT_FILE = new URL('../site/data.json', import.meta.url);
@@ -8,6 +8,7 @@ const TODAY = new Date().toISOString().slice(0, 10);
 
 const only = process.argv.slice(2).filter((a) => !a.startsWith('-'));
 const previous = await readPrevious();
+const previousSignature = signatureOf([...previous.values()]);
 
 const results = [];
 for (const broker of BROKERS) {
@@ -57,19 +58,38 @@ for (const broker of BROKERS) {
   }
 }
 
-const payload = {
-  generatedAt: new Date().toISOString(),
-  since: SINCE,
-  brokers: results,
-};
-
-await mkdir(new URL('../site/', import.meta.url), { recursive: true });
-await writeFile(OUT_FILE, JSON.stringify(payload) + '\n', 'utf8');
-
 const failed = results.filter((r) => !r.ok);
 const total = results.reduce((n, r) => n + r.items.length, 0);
 console.log(`\n完成：${results.length - failed.length}/${results.length} 家成功，共 ${total} 筆`);
 if (failed.length) console.log(`失敗：${failed.map((f) => f.name).join('、')}`);
+
+// 沒有新公告就完全不動 data.json：時間戳每次都變的話，CI 會誤判成有更新而
+// 天天產生 commit 並重新部署。所以先比對內容，一樣就跳過。
+if (signatureOf(results) === previousSignature) {
+  console.log('公告內容與上次相同，data.json 不變更。');
+} else {
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    since: SINCE,
+    excludedKeywords: EDGE_KEYWORDS,
+    brokers: results,
+  };
+  await mkdir(new URL('../site/', import.meta.url), { recursive: true });
+  await writeFile(OUT_FILE, JSON.stringify(payload) + '\n', 'utf8');
+  console.log('偵測到新公告，已更新 data.json。');
+}
+
+/**
+ * 「這次抓到的公告集合」的指紋。刻意排序後再比對，這樣即使來源回傳順序有
+ * 些微差異，只要公告本身沒變就不算更新。
+ */
+function signatureOf(brokers) {
+  return JSON.stringify(
+    brokers
+      .map((b) => [b.id, b.items.map((it) => it.id).sort()])
+      .sort((a, b) => a[0].localeCompare(b[0]))
+  );
+}
 
 function describe(broker) {
   return {

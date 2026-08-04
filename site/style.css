@@ -43,6 +43,21 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 頁面最上方的收錄範圍說明 */
+.notice {
+  margin: 0;
+  padding: 8px clamp(12px, 3vw, 28px);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.notice:empty {
+  display: none;
+}
+
 /* ---------------------------------------------------------------- top bar */
 .topbar {
   position: sticky;
@@ -67,7 +82,7 @@ body {
   letter-spacing: 0.02em;
 }
 
-.updated {
+.scope {
   margin: 0;
   color: var(--muted);
   font-size: 13px;
@@ -394,9 +409,19 @@ mark {
 }
 
 .foot {
-  padding: 0 clamp(12px, 3vw, 28px) 28px;
+  padding: 8px clamp(12px, 3vw, 28px) 32px;
   color: var(--muted);
   font-size: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.foot p {
+  margin: 4px 0;
+}
+
+#update-info {
+  font-weight: 700;
+  color: var(--text);
 }
 
 .errors {

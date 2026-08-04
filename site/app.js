@@ -1,29 +1,40 @@
 const SEEN_KEY = 'futures-board.seen';
+const PREFS_KEY = 'futures-board.prefs';
 const TAGS = ['保證金', '假期', '系統', '商品', '防詐', '活動', '其他'];
 const CARD_PREVIEW = 40; // 每張卡先顯示幾則，其餘按「顯示全部」再展開
 const TIMELINE_CHUNK = 300;
+/** 台灣時間的自動更新時刻，與 .github/workflows/scrape.yml 的 cron 一致。 */
+const UPDATE_HOURS = [8, 11, 15, 19, 23];
 
 const el = {
-  updated: document.getElementById('updated'),
+  excludedNotice: document.getElementById('excluded-notice'),
+  scope: document.getElementById('scope'),
   search: document.getElementById('search'),
   clearSearch: document.getElementById('clear-search'),
   viewBoard: document.getElementById('view-board'),
   viewTimeline: document.getElementById('view-timeline'),
   tagFilters: document.getElementById('tag-filters'),
+  showMargin: document.getElementById('show-margin'),
+  showMarginLabel: document.getElementById('show-margin-label'),
   onlyNew: document.getElementById('only-new'),
   markAll: document.getElementById('mark-all'),
   board: document.getElementById('board'),
   timeline: document.getElementById('timeline'),
   empty: document.getElementById('empty'),
+  updateInfo: document.getElementById('update-info'),
+  scheduleInfo: document.getElementById('schedule-info'),
   errors: document.getElementById('broker-errors'),
 };
 
+const prefs = loadPrefs();
+
 const state = {
-  data: { brokers: [], generatedAt: null, since: null },
+  data: { brokers: [], generatedAt: null, since: null, excludedKeywords: [] },
   seen: loadSeen(),
   query: '',
   tags: new Set(),
   onlyNew: false,
+  showMargin: prefs.showMargin ?? false, // 保證金公告量最大，預設收合
   view: 'board',
   expanded: new Set(), // 哪些卡片已按下「顯示全部」
   timelineLimit: TIMELINE_CHUNK,
@@ -32,8 +43,10 @@ const state = {
 init();
 
 async function init() {
+  lockContextMenu();
   renderTagFilters();
   bindEvents();
+  el.showMargin.checked = state.showMargin;
 
   try {
     const res = await fetch(`data.json?t=${Date.now()}`, { cache: 'no-store' });
@@ -56,6 +69,11 @@ async function init() {
   render();
 }
 
+/** 鎖右鍵。純前端的嚇阻，開發者工具與檢視原始碼仍然繞得過去。 */
+function lockContextMenu() {
+  document.addEventListener('contextmenu', (event) => event.preventDefault());
+}
+
 /* ------------------------------------------------------------------ events */
 function bindEvents() {
   el.search.addEventListener('input', () => {
@@ -75,6 +93,13 @@ function bindEvents() {
 
   el.viewBoard.addEventListener('click', () => setView('board'));
   el.viewTimeline.addEventListener('click', () => setView('timeline'));
+
+  el.showMargin.addEventListener('change', () => {
+    state.showMargin = el.showMargin.checked;
+    savePrefs();
+    state.timelineLimit = TIMELINE_CHUNK;
+    render();
+  });
 
   el.onlyNew.addEventListener('change', () => {
     state.onlyNew = el.onlyNew.checked;
@@ -118,17 +143,27 @@ function renderTagFilters() {
 
 /* ------------------------------------------------------------------ render */
 function renderMeta() {
-  const when = state.data.generatedAt ? new Date(state.data.generatedAt) : null;
+  const excluded = state.data.excludedKeywords ?? [];
+  el.excludedNotice.textContent = excluded.length
+    ? `本看板不收錄以下類別的公告：${excluded.join('、')}。這些請直接到各期貨商官網查看。`
+    : '';
+
   const total = allItems().length;
-  const parts = [];
-  if (when)
-    parts.push(`更新於 ${when.toLocaleString('zh-TW', { dateStyle: 'medium', timeStyle: 'short' })}`);
-  parts.push(`收錄 ${state.data.since ?? ''} 起共 ${total.toLocaleString('zh-TW')} 則`);
-  el.updated.textContent = parts.join('｜');
+  const margin = allItems().filter((it) => it.tag === '保證金').length;
+  el.scope.textContent = `收錄 ${state.data.since ?? ''} 起共 ${total.toLocaleString('zh-TW')} 則`;
+  el.showMarginLabel.textContent = `顯示保證金公告（${margin.toLocaleString('zh-TW')} 則）`;
+
+  const when = state.data.generatedAt ? new Date(state.data.generatedAt) : null;
+  el.updateInfo.textContent = when
+    ? `資料更新時間：${when.toLocaleString('zh-TW', { dateStyle: 'full', timeStyle: 'short' })}`
+    : '資料更新時間：未知';
+  el.scheduleInfo.textContent =
+    `自動更新時刻（台灣時間）：${UPDATE_HOURS.map((h) => `${String(h).padStart(2, '0')}:00`).join('、')}` +
+    `，有新公告才會更新。`;
 
   const broken = state.data.brokers.filter((b) => !b.ok);
   el.errors.textContent = broken.length
-    ? `｜本次抓取失敗：${broken.map((b) => b.name).join('、')}（顯示上次成功的內容）`
+    ? `本次抓取失敗：${broken.map((b) => b.name).join('、')}（顯示上次成功的內容）`
     : '';
 }
 
@@ -311,6 +346,8 @@ function renderItem(item, { showBroker = false } = {}) {
 
 /* ----------------------------------------------------------------- helpers */
 function matches(item) {
+  // 保證金量最大，預設收起來；但使用者若主動點選「保證金」分類，就以分類篩選為準。
+  if (!state.showMargin && item.tag === '保證金' && !state.tags.has('保證金')) return false;
   if (state.onlyNew && state.seen.has(item.id)) return false;
   if (state.tags.size > 0 && !state.tags.has(item.tag)) return false;
   if (state.query && !item.title.toLowerCase().includes(state.query.toLowerCase())) return false;
@@ -367,5 +404,21 @@ function saveSeen() {
     localStorage.setItem(SEEN_KEY, JSON.stringify(ids));
   } catch {
     /* storage full or blocked — unread state is a nicety, not critical */
+  }
+}
+
+function loadPrefs() {
+  try {
+    return JSON.parse(localStorage.getItem(PREFS_KEY) ?? '{}');
+  } catch {
+    return {};
+  }
+}
+
+function savePrefs() {
+  try {
+    localStorage.setItem(PREFS_KEY, JSON.stringify({ showMargin: state.showMargin }));
+  } catch {
+    /* 存不了就算了，下次重新載入回到預設值 */
   }
 }
