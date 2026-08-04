@@ -1,5 +1,7 @@
 const SEEN_KEY = 'futures-board.seen';
 const TAGS = ['保證金', '假期', '系統', '商品', '防詐', '活動', '其他'];
+const CARD_PREVIEW = 40; // 每張卡先顯示幾則，其餘按「顯示全部」再展開
+const TIMELINE_CHUNK = 300;
 
 const el = {
   updated: document.getElementById('updated'),
@@ -17,12 +19,14 @@ const el = {
 };
 
 const state = {
-  data: { brokers: [], generatedAt: null },
+  data: { brokers: [], generatedAt: null, since: null },
   seen: loadSeen(),
   query: '',
   tags: new Set(),
   onlyNew: false,
   view: 'board',
+  expanded: new Set(), // 哪些卡片已按下「顯示全部」
+  timelineLimit: TIMELINE_CHUNK,
 };
 
 init();
@@ -42,7 +46,7 @@ async function init() {
   }
 
   // First visit: treat everything as already read, so the board doesn't open
-  // with 200 unread markers on day one.
+  // with thousands of unread markers on day one.
   if (state.seen === null) {
     state.seen = new Set(allItems().map((it) => it.id));
     saveSeen();
@@ -57,6 +61,7 @@ function bindEvents() {
   el.search.addEventListener('input', () => {
     state.query = el.search.value.trim();
     el.clearSearch.hidden = state.query === '';
+    state.timelineLimit = TIMELINE_CHUNK;
     render();
   });
 
@@ -85,6 +90,7 @@ function bindEvents() {
 
 function setView(view) {
   state.view = view;
+  state.timelineLimit = TIMELINE_CHUNK;
   el.viewBoard.classList.toggle('is-on', view === 'board');
   el.viewTimeline.classList.toggle('is-on', view === 'timeline');
   el.viewBoard.setAttribute('aria-selected', String(view === 'board'));
@@ -102,6 +108,7 @@ function renderTagFilters() {
       button.addEventListener('click', () => {
         state.tags.has(tag) ? state.tags.delete(tag) : state.tags.add(tag);
         button.classList.toggle('is-on', state.tags.has(tag));
+        state.timelineLimit = TIMELINE_CHUNK;
         render();
       });
       return button;
@@ -112,9 +119,12 @@ function renderTagFilters() {
 /* ------------------------------------------------------------------ render */
 function renderMeta() {
   const when = state.data.generatedAt ? new Date(state.data.generatedAt) : null;
-  el.updated.textContent = when
-    ? `更新於 ${when.toLocaleString('zh-TW', { dateStyle: 'medium', timeStyle: 'short' })}`
-    : '';
+  const total = allItems().length;
+  const parts = [];
+  if (when)
+    parts.push(`更新於 ${when.toLocaleString('zh-TW', { dateStyle: 'medium', timeStyle: 'short' })}`);
+  parts.push(`收錄 ${state.data.since ?? ''} 起共 ${total.toLocaleString('zh-TW')} 則`);
+  el.updated.textContent = parts.join('｜');
 
   const broken = state.data.brokers.filter((b) => !b.ok);
   el.errors.textContent = broken.length
@@ -133,12 +143,8 @@ function render() {
   el.board.hidden = state.view !== 'board';
   el.timeline.hidden = state.view !== 'timeline';
 
-  if (state.view === 'board') renderBoard(brokers);
+  if (state.view === 'board') el.board.replaceChildren(...brokers.map(renderCard));
   else renderTimeline(brokers);
-}
-
-function renderBoard(brokers) {
-  el.board.replaceChildren(...brokers.map(renderCard));
 }
 
 function renderCard(broker) {
@@ -157,19 +163,19 @@ function renderCard(broker) {
   link.target = '_blank';
   link.rel = 'noopener';
   link.textContent = '官網公告 ↗';
+  link.title = broker.feeds ? `來源：${broker.feeds}` : '';
   head.append(link);
 
   const unread = broker.visible.filter((it) => !state.seen.has(it.id)).length;
   const count = document.createElement('span');
   count.className = 'count';
+  count.textContent = `${broker.visible.length} 則`;
   if (unread > 0) {
     const badge = document.createElement('span');
     badge.className = 'badge-new';
     badge.textContent = String(unread);
     badge.title = `${unread} 則未讀`;
-    count.append(badge);
-  } else {
-    count.textContent = `${broker.visible.length} 則`;
+    count.prepend(badge);
   }
   head.append(count);
 
@@ -183,10 +189,27 @@ function renderCard(broker) {
 
   card.append(head);
 
+  const expanded = state.expanded.has(broker.id);
+  const shown = expanded ? broker.visible : broker.visible.slice(0, CARD_PREVIEW);
+
   const list = document.createElement('ul');
   list.className = 'items';
-  list.append(...broker.visible.map((item) => renderItem(item)));
+  list.append(...shown.map((item) => renderItem(item)));
   card.append(list);
+
+  if (broker.visible.length > CARD_PREVIEW) {
+    const more = document.createElement('button');
+    more.type = 'button';
+    more.className = 'card__more';
+    more.textContent = expanded
+      ? '收合'
+      : `顯示全部 ${broker.visible.length.toLocaleString('zh-TW')} 則`;
+    more.addEventListener('click', () => {
+      expanded ? state.expanded.delete(broker.id) : state.expanded.add(broker.id);
+      render();
+    });
+    card.append(more);
+  }
   return card;
 }
 
@@ -199,8 +222,9 @@ function renderTimeline(brokers) {
         (b.date ?? '').localeCompare(a.date ?? '')
     );
 
+  const slice = items.slice(0, state.timelineLimit);
   const groups = new Map();
-  for (const item of items) {
+  for (const item of slice) {
     const key = item.date ?? '日期不詳';
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(item);
@@ -210,12 +234,24 @@ function renderTimeline(brokers) {
   for (const [day, rows] of groups) {
     const heading = document.createElement('div');
     heading.className = 'day';
-    heading.textContent = formatDay(day);
+    heading.textContent = `${formatDay(day)}　${rows.length} 則`;
     nodes.push(heading);
 
     const list = document.createElement('ul');
     list.append(...rows.map((item) => renderItem(item, { showBroker: true })));
     nodes.push(list);
+  }
+
+  if (items.length > slice.length) {
+    const more = document.createElement('button');
+    more.type = 'button';
+    more.className = 'card__more';
+    more.textContent = `載入更多（還有 ${(items.length - slice.length).toLocaleString('zh-TW')} 則）`;
+    more.addEventListener('click', () => {
+      state.timelineLimit += TIMELINE_CHUNK;
+      render();
+    });
+    nodes.push(more);
   }
   el.timeline.replaceChildren(...nodes);
 }
@@ -254,6 +290,7 @@ function renderItem(item, { showBroker = false } = {}) {
   tag.className = 'tag';
   tag.dataset.tag = item.tag;
   tag.textContent = item.tag;
+  tag.title = item.category ?? '';
   meta.append(tag);
 
   if (showBroker) {
@@ -324,7 +361,7 @@ function loadSeen() {
 
 function saveSeen() {
   // Cap the stored set so it can't grow without bound as items age out.
-  const ids = [...state.seen].slice(-3000);
+  const ids = [...state.seen].slice(-8000);
   state.seen = new Set(ids);
   try {
     localStorage.setItem(SEEN_KEY, JSON.stringify(ids));

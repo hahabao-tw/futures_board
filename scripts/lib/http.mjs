@@ -55,3 +55,48 @@ export async function fetchJSON(url, options) {
   const { buffer } = await fetchBuffer(url, options);
   return JSON.parse(buffer.toString('utf8'));
 }
+
+/** POST an `application/x-www-form-urlencoded` body and parse the HTML back. */
+export function postForm(url, fields, options = {}) {
+  return fetchHTML(url, {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded', ...options.headers },
+    body: new URLSearchParams(fields).toString(),
+  });
+}
+
+/**
+ * Walks paginated feeds one page at a time, stopping as soon as a page yields
+ * nothing new or every row on it predates the cutoff. Feeds are date-descending,
+ * so the first fully-stale page means the rest are stale too.
+ */
+export async function paginate(loadPage, { maxPages, since, onPage } = {}) {
+  const all = [];
+  const seen = new Set();
+  for (let page = 1; page <= maxPages; page += 1) {
+    let rows;
+    try {
+      rows = await loadPage(page);
+    } catch (err) {
+      if (page === 1) throw err;
+      break; // A mid-run failure still leaves the earlier pages usable.
+    }
+    if (!rows || rows.length === 0) break;
+
+    const fresh = rows.filter((row) => {
+      const key = `${row.title}|${row.date ?? ''}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+    if (fresh.length === 0) break; // Out-of-range pages often loop back to page 1.
+
+    all.push(...fresh);
+    onPage?.(page, fresh.length);
+
+    const dated = fresh.filter((row) => row.date);
+    if (since && dated.length > 0 && dated.every((row) => row.date < since)) break;
+  }
+  return all;
+}

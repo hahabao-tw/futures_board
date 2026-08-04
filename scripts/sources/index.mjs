@@ -1,110 +1,108 @@
-import * as staticSources from './static.mjs';
-import * as rendered from './rendered.mjs';
+import tsfutures from './tsfutures.mjs';
+import ibff from './ibff.mjs';
+import dcnf from './dcnf.mjs';
+import fubon from './fubon.mjs';
+import concord from './concord.mjs';
+import mega from './mega.mjs';
+import spf from './spf.mjs';
+import kgi from './kgi.mjs';
+import entrust from './entrust.mjs';
+import cathay from './cathay.mjs';
+import capital from './capital.mjs';
+import pfcf from './pfcf.mjs';
+import yuanta from './yuanta.mjs';
 
-/** Order here is the order the cards appear on the board. */
+/** 這裡的順序就是看板上卡片的順序。 */
 export const BROKERS = [
   {
     id: 'tsfutures',
     name: '台新期貨',
-    site: 'https://www.tsfutures.com.tw/',
     board: 'https://www.tsfutures.com.tw/news-futures',
-    mode: 'browser',
-    fetch: rendered.tsfutures,
+    feeds: '8 個分類',
+    fetch: tsfutures,
   },
   {
     id: 'ibff',
     name: '國票期貨',
-    site: 'https://www.ibff.com.tw/',
     board: 'https://www.ibff.com.tw/news/default.aspx?xy=1&xt=1',
-    mode: 'http',
-    fetch: staticSources.ibff,
+    feeds: '5 個分類',
+    fetch: ibff,
   },
   {
     id: 'dcnf',
     name: '大昌期貨',
-    site: 'https://www.dcnf.com.tw/',
     board: 'https://www.dcnf.com.tw/news_02.htm',
-    mode: 'http',
-    fetch: staticSources.dcnf,
+    feeds: '4 個分類',
+    fetch: dcnf,
   },
   {
     id: 'fubon',
     name: '富邦期貨',
-    site: 'https://www.fubon.com/futures/home/',
     board: 'https://www.fubon.com/futures/home/tradeinfo/news',
-    mode: 'browser',
-    fetch: rendered.fubon,
+    feeds: '最新消息與公告',
+    fetch: fubon,
   },
   {
     id: 'concord',
     name: '康和期貨',
-    site: 'https://www.concordfutures.com.tw/',
     board: 'https://www.concordfutures.com.tw/ConcordFutures/Bulletin/List/New/1',
-    mode: 'browser',
-    fetch: rendered.concord,
+    feeds: '8 個分類',
+    fetch: concord,
   },
   {
     id: 'mega',
     name: '兆豐期貨',
-    site: 'https://www.megafutures.com.tw/',
     board: 'https://www.megafutures.com.tw/emegaFutures/bulletinList.do',
-    mode: 'browser',
-    fetch: rendered.mega,
+    feeds: '最新消息',
+    fetch: mega,
   },
   {
     id: 'spf',
     name: '永豐期貨',
-    site: 'https://www.spf.com.tw/',
     board: 'https://www.spf.com.tw/spfBulletin/list15c3486648f00000b9bdb734bebce404.html',
-    mode: 'http',
-    fetch: staticSources.spf,
+    feeds: '3 個清單',
+    fetch: spf,
   },
   {
     id: 'kgi',
     name: '凱基期貨',
-    site: 'https://www.kgif.com.tw/zh-tw',
     board: 'https://www.kgif.com.tw/zh-tw/stock-market-overview/market-news',
-    mode: 'http',
-    fetch: staticSources.kgi,
+    feeds: '最新公告（含 7 個分類）',
+    fetch: kgi,
   },
   {
     id: 'entrust',
     name: '華南期貨',
-    site: 'https://ft.entrust.com.tw/',
     board: 'https://ft.entrust.com.tw/entrustFutures/announcement/bulletin.do',
-    mode: 'http',
-    fetch: staticSources.entrust,
+    feeds: '交易公告 + 最新消息',
+    fetch: entrust,
   },
   {
     id: 'cathay',
     name: '國泰期貨',
-    site: 'https://www.cathayfut.com.tw/',
     board: 'https://www.cathayfut.com.tw/F_news.aspx?Fcode=NewPost_more&page=1',
-    mode: 'http',
-    fetch: staticSources.cathay,
+    feeds: '最新消息',
+    fetch: cathay,
   },
   {
     id: 'capital',
     name: '群益期貨',
-    site: 'https://www.capitalfutures.com.tw/zh-tw',
     board: 'https://www.capitalfutures.com.tw/zh-tw/news/latest',
-    mode: 'http',
-    fetch: staticSources.capital,
+    feeds: '最新消息',
+    fetch: capital,
   },
   {
     id: 'pfcf',
     name: '統一期貨',
-    site: 'https://www.pfcf.com.tw/',
     board: 'https://www.pfcf.com.tw/news',
-    mode: 'http',
-    fetch: staticSources.pfcf,
+    feeds: '最新消息',
+    fetch: pfcf,
   },
   {
     id: 'yuanta',
     name: '元大期貨',
-    site: 'https://www.yuantafutures.com.tw/',
     board: 'https://www.yuantafutures.com.tw/marketinfo_02',
-    mode: 'browser',
-    fetch: rendered.yuanta,
+    feeds: '3 個分類',
+    fetch: yuanta,
   },
 ];

@@ -32,9 +32,6 @@ jobs:
 
       - run: npm ci
 
-      # Five brokers render their announcements client-side and need a browser.
-      - run: npx playwright install --with-deps chromium
-
       - name: 抓取各期貨商公告
         run: npm run scrape
 

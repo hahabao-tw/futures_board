@@ -1,10 +1,9 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { BROKERS } from './sources/index.mjs';
-import { closeBrowser } from './lib/browser.mjs';
+import { MAX_ITEMS_PER_BROKER, SINCE, isEdgeCategory } from './config.mjs';
 import { dedupe, itemId, normaliseTag, sortByDateDesc } from './lib/util.mjs';
 
 const OUT_FILE = new URL('../site/data.json', import.meta.url);
-const MAX_ITEMS = 20;
 const TODAY = new Date().toISOString().slice(0, 10);
 
 const only = process.argv.slice(2).filter((a) => !a.startsWith('-'));
@@ -21,26 +20,29 @@ for (const broker of BROKERS) {
   const started = Date.now();
   try {
     const raw = await broker.fetch();
-    const items = sortByDateDesc(
-      dedupe(
-        raw
-          .filter((it) => it.title && it.title.length > 3)
-          .map((it) => ({
-            id: itemId(broker.id, it.title, it.url),
-            title: it.title,
-            url: it.url ?? broker.board,
-            date: it.date ?? null,
-            category: it.category || null,
-            tag: normaliseTag(it.category, it.title),
-            pinned: Boolean(it.date && it.date > TODAY),
-          }))
-      )
-    ).slice(0, MAX_ITEMS);
+    const shaped = raw
+      .filter((it) => it.title && it.title.length > 3)
+      .filter((it) => !isEdgeCategory(it.category))
+      // Anything without a date is kept: it is usually a standing notice, and
+      // dropping it would silently hide announcements the broker still shows.
+      .filter((it) => !it.date || it.date >= SINCE)
+      .map((it) => ({
+        id: itemId(broker.id, it.title, it.url),
+        title: it.title,
+        url: it.url ?? broker.board,
+        date: it.date ?? null,
+        category: it.category || null,
+        tag: normaliseTag(it.category, it.title),
+        pinned: Boolean(it.date && it.date > TODAY),
+      }));
 
-    if (items.length === 0) throw new Error('解析到 0 筆，選擇器可能已失效');
+    const items = sortByDateDesc(dedupe(shaped)).slice(0, MAX_ITEMS_PER_BROKER);
+    if (items.length === 0) throw new Error('解析到 0 筆，選擇器或 API 可能已失效');
 
     results.push({ ...describe(broker), ok: true, error: null, items });
-    console.log(`✓ ${broker.name}\t${items.length} 筆\t${Date.now() - started}ms`);
+    console.log(
+      `✓ ${broker.name}\t${String(items.length).padStart(4)} 筆\t${Date.now() - started}ms`
+    );
   } catch (err) {
     // Keep the last good snapshot so one broker's outage doesn't blank its card.
     const stale = previous.get(broker.id);
@@ -49,21 +51,20 @@ for (const broker of BROKERS) {
       ok: false,
       error: String(err.message ?? err).slice(0, 200),
       items: stale?.items ?? [],
-      staleSince: stale?.fetchedAt ?? null,
+      fetchedAt: stale?.fetchedAt ?? null,
     });
     console.log(`✗ ${broker.name}\t${err.message}`);
   }
 }
 
-await closeBrowser();
-
 const payload = {
   generatedAt: new Date().toISOString(),
-  brokers: results.map((r) => ({ ...r, fetchedAt: r.ok ? new Date().toISOString() : r.fetchedAt })),
+  since: SINCE,
+  brokers: results,
 };
 
 await mkdir(new URL('../site/', import.meta.url), { recursive: true });
-await writeFile(OUT_FILE, JSON.stringify(payload, null, 2) + '\n', 'utf8');
+await writeFile(OUT_FILE, JSON.stringify(payload) + '\n', 'utf8');
 
 const failed = results.filter((r) => !r.ok);
 const total = results.reduce((n, r) => n + r.items.length, 0);
@@ -74,9 +75,8 @@ function describe(broker) {
   return {
     id: broker.id,
     name: broker.name,
-    site: broker.site,
     board: broker.board,
-    mode: broker.mode,
+    feeds: broker.feeds,
     fetchedAt: new Date().toISOString(),
   };
 }
