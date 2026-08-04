@@ -6,6 +6,27 @@ const TIMELINE_CHUNK = 300;
 /** 台灣時間的自動更新時刻，與 .github/workflows/scrape.yml 的 cron 一致。 */
 const UPDATE_HOURS = [8, 11, 15, 19, 23];
 
+/** 字級可選的基準值（px）。預設取索引 2，比原本的 15px 大一級。 */
+const FONT_STEPS = [13.5, 15, 16.5, 18, 20, 22];
+const DEFAULT_FONT_STEP = 2;
+
+/** 每家期貨商的專屬色相，讓卡片一眼分得出來。 */
+const BROKER_HUE = {
+  tsfutures: 350, // 台新 紅
+  ibff: 18, // 國票 橙
+  dcnf: 40, // 大昌 琥珀
+  fubon: 145, // 富邦 綠
+  concord: 172, // 康和 青
+  mega: 196, // 兆豐 天藍
+  spf: 218, // 永豐 藍
+  kgi: 250, // 凱基 靛
+  entrust: 275, // 華南 紫
+  cathay: 300, // 國泰 洋紅
+  capital: 325, // 群益 桃
+  pfcf: 95, // 統一 黃綠
+  yuanta: 8, // 元大 朱紅
+};
+
 const el = {
   excludedNotice: document.getElementById('excluded-notice'),
   scope: document.getElementById('scope'),
@@ -18,6 +39,10 @@ const el = {
   showMarginLabel: document.getElementById('show-margin-label'),
   onlyNew: document.getElementById('only-new'),
   markAll: document.getElementById('mark-all'),
+  fontUp: document.getElementById('font-up'),
+  fontDown: document.getElementById('font-down'),
+  fontLevel: document.getElementById('font-level'),
+  lens: document.getElementById('lens'),
   board: document.getElementById('board'),
   timeline: document.getElementById('timeline'),
   empty: document.getElementById('empty'),
@@ -35,6 +60,7 @@ const state = {
   tags: new Set(),
   onlyNew: false,
   showMargin: prefs.showMargin ?? false, // 保證金公告量最大，預設收合
+  fontStep: clampStep(prefs.fontStep ?? DEFAULT_FONT_STEP),
   view: 'board',
   expanded: new Set(), // 哪些卡片已按下「顯示全部」
   timelineLimit: TIMELINE_CHUNK,
@@ -44,8 +70,10 @@ init();
 
 async function init() {
   lockContextMenu();
+  applyFontStep();
   renderTagFilters();
   bindEvents();
+  bindLens();
   el.showMargin.checked = state.showMargin;
 
   try {
@@ -111,6 +139,73 @@ function bindEvents() {
     saveSeen();
     render();
   });
+
+  el.fontUp.addEventListener('click', () => setFontStep(state.fontStep + 1));
+  el.fontDown.addEventListener('click', () => setFontStep(state.fontStep - 1));
+}
+
+/* -------------------------------------------------------------- 字級調整 */
+function setFontStep(step) {
+  state.fontStep = clampStep(step);
+  applyFontStep();
+  savePrefs();
+}
+
+function applyFontStep() {
+  document.documentElement.style.setProperty('--ui-size', `${FONT_STEPS[state.fontStep]}px`);
+  el.fontLevel.textContent = `字級 ${state.fontStep + 1}/${FONT_STEPS.length}`;
+  el.fontDown.disabled = state.fontStep === 0;
+  el.fontUp.disabled = state.fontStep === FONT_STEPS.length - 1;
+}
+
+function clampStep(step) {
+  return Math.min(Math.max(Number(step) || 0, 0), FONT_STEPS.length - 1);
+}
+
+/* ---------------------------------------------------------------- 放大鏡 */
+/**
+ * 滑鼠移到公告標題時，跟著游標顯示一個放大的鏡片。標題常被卡片寬度截斷，
+ * 放大鏡順便把完整內容攤開。用事件委派 + 單一鏡片元素，不隨公告數量增加成本。
+ */
+function bindLens() {
+  const OFFSET = 18;
+
+  document.addEventListener('mouseover', (event) => {
+    const title = event.target.closest?.('.item__title');
+    if (!title) return;
+    const meta = title.parentElement?.querySelector('.item__meta');
+    el.lens.textContent = title.textContent;
+    if (meta) {
+      const note = document.createElement('span');
+      note.className = 'lens__meta';
+      note.textContent = meta.textContent.replace(/\s+/g, ' ').trim();
+      el.lens.append(note);
+    }
+    el.lens.classList.add('is-on');
+    positionLens(event);
+  });
+
+  document.addEventListener('mouseout', (event) => {
+    if (event.target.closest?.('.item__title')) el.lens.classList.remove('is-on');
+  });
+
+  document.addEventListener('mousemove', (event) => {
+    if (el.lens.classList.contains('is-on')) positionLens(event);
+  });
+
+  // 捲動時游標下的元素會變，直接收掉比較不會殘留。
+  window.addEventListener('scroll', () => el.lens.classList.remove('is-on'), { passive: true });
+
+  function positionLens(event) {
+    const rect = el.lens.getBoundingClientRect();
+    const left = Math.min(event.clientX + OFFSET, window.innerWidth - rect.width - 8);
+    const top =
+      event.clientY + OFFSET + rect.height > window.innerHeight
+        ? event.clientY - rect.height - OFFSET
+        : event.clientY + OFFSET;
+    el.lens.style.left = `${Math.max(8, left)}px`;
+    el.lens.style.top = `${Math.max(8, top)}px`;
+  }
 }
 
 function setView(view) {
@@ -185,6 +280,7 @@ function render() {
 function renderCard(broker) {
   const card = document.createElement('article');
   card.className = 'card';
+  card.style.setProperty('--hue', String(BROKER_HUE[broker.id] ?? 210));
 
   const head = document.createElement('div');
   head.className = 'card__head';
@@ -250,7 +346,7 @@ function renderCard(broker) {
 
 function renderTimeline(brokers) {
   const items = brokers
-    .flatMap((b) => b.visible.map((it) => ({ ...it, broker: b.name })))
+    .flatMap((b) => b.visible.map((it) => ({ ...it, broker: b.name, brokerId: b.id })))
     .sort(
       (a, b) =>
         Number(a.pinned ?? false) - Number(b.pinned ?? false) ||
@@ -332,6 +428,11 @@ function renderItem(item, { showBroker = false } = {}) {
     const broker = document.createElement('span');
     broker.className = 'broker-name';
     broker.textContent = item.broker;
+    // 時間軸上各家混在一起，用同一組色相標出來源。
+    const hue = BROKER_HUE[item.brokerId] ?? 210;
+    broker.style.color = `hsl(${hue} 75% 72%)`;
+    anchor.style.setProperty('--hue', String(hue));
+    anchor.classList.add('item--sourced');
     meta.append(broker);
   }
 
@@ -417,7 +518,10 @@ function loadPrefs() {
 
 function savePrefs() {
   try {
-    localStorage.setItem(PREFS_KEY, JSON.stringify({ showMargin: state.showMargin }));
+    localStorage.setItem(
+      PREFS_KEY,
+      JSON.stringify({ showMargin: state.showMargin, fontStep: state.fontStep })
+    );
   } catch {
     /* 存不了就算了，下次重新載入回到預設值 */
   }
