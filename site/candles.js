@@ -4,9 +4,9 @@
  */
 const CANDLE_WIDTH = 11; // 含間距的單根寬度
 const SPEED = 0.35; // 每幀往左移動的像素
-const UP = 'rgba(255, 77, 77, 0.5)';
-const DOWN = 'rgba(34, 197, 94, 0.45)';
-const GRID = 'rgba(120, 150, 190, 0.07)';
+const UP = 'rgba(251, 113, 133, 0.42)';
+const DOWN = 'rgba(74, 222, 128, 0.36)';
+const GRID = 'rgba(148, 163, 184, 0.06)';
 
 const canvas = document.getElementById('candles');
 if (canvas && !matchMedia('(prefers-reduced-motion: reduce)').matches) {

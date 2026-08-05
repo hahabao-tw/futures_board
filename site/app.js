@@ -154,13 +154,15 @@ function bindLens() {
     const title = event.target.closest?.('.item__title');
     if (!title) return;
     const meta = title.parentElement?.querySelector('.item__meta');
-    el.lens.textContent = title.textContent;
+    const body = document.createElement('span');
+    body.textContent = title.textContent;
     if (meta) {
       const note = document.createElement('span');
       note.className = 'lens__meta';
       note.textContent = meta.textContent.replace(/\s+/g, ' ').trim();
-      el.lens.append(note);
+      body.append(note);
     }
+    el.lens.replaceChildren(svgIcon('i-search'), body);
     el.lens.classList.add('is-on');
     positionLens(event);
   });
@@ -279,7 +281,7 @@ function renderCard(source, hue) {
   link.href = source.board;
   link.target = '_blank';
   link.rel = 'noopener';
-  link.textContent = '原站 ↗';
+  link.append('原站', svgIcon('i-external'));
   link.title = source.feeds ? `來源：${source.feeds}` : '';
   head.append(link);
 
@@ -291,7 +293,7 @@ function renderCard(source, hue) {
   if (!source.ok) {
     const warn = document.createElement('span');
     warn.className = 'warn';
-    warn.textContent = '⚠';
+    warn.append(svgIcon('i-warn'));
     warn.title = `抓取失敗：${source.error ?? '未知錯誤'}`;
     head.append(warn);
   }
@@ -410,6 +412,17 @@ function renderItem(item, { showSource = false } = {}) {
 }
 
 /* ----------------------------------------------------------------- helpers */
+/** 取用 index.html 裡的 SVG 圖示庫，介面不用 emoji 當圖示。 */
+function svgIcon(id) {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('class', 'icon');
+  svg.setAttribute('aria-hidden', 'true');
+  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+  use.setAttribute('href', `#${id}`);
+  svg.append(use);
+  return svg;
+}
+
 function matches(item) {
   // 保證金量最大，預設收起來；但使用者若主動點選「保證金」分類，就以分類篩選為準。
   if (!state.showMargin && item.tag === '保證金' && !state.tags.has('保證金')) return false;

@@ -1,31 +1,40 @@
 /*
- * 夜間交易台風格。刻意只做深色一種，不跟隨系統淺色主題——
- * 這是對「金融交易風格」的設計取捨，文字對比度全部拉到 AA 以上。
- * 台股慣例：紅漲綠跌，所以紅色是強調色而非警示色。
+ * 風格：Dark Mode (OLED) × Data-Dense Dashboard
+ * 由 ui-ux-pro-max 技能的 --design-system 建議選出，理由是這個看板本質上是
+ * 一個資料密集的營運面板（3,400+ 則公告），不是行銷頁。
+ *
+ * 刻意偏離建議之處：技能建議把綠色當作正向強調色，但台股慣例紅漲綠跌，
+ * 綠色在這裡代表跌。因此紅／綠只保留給行情語意，介面強調色改用中性的琥珀色。
  */
 :root {
   --ui-size: 15px; /* 由字級按鈕改寫，預設對應「字級 2/6」 */
 
-  --bg: #0a0e15;
-  --bg-grid: #121826;
-  --surface: #131a26;
-  --surface-2: #1a2332;
-  --surface-3: #212c3e;
-  --line: #2a374d;
-  --line-soft: #202b3d;
+  /* Slate 色階 */
+  --bg: #020617;
+  --surface: #0f172a;
+  --surface-2: #1e293b;
+  --surface-3: #334155;
+  --line: #334155;
+  --line-soft: #1e293b;
 
-  --text: #eef3fa; /* 對 --bg 約 16:1 */
-  --text-dim: #b9c7dc; /* 約 10:1，仍清楚可讀 */
-  --muted: #8fa2bd; /* 約 7:1，只用於次要說明 */
+  --text: #f8fafc; /* 對 --bg 約 18:1 */
+  --text-dim: #cbd5e1; /* 約 13:1 */
+  --muted: #94a3b8; /* 約 8:1，只用於次要說明 */
 
-  --up: #ff4d4d; /* 紅＝漲 */
-  --up-soft: #3a1620;
-  --down: #22c55e; /* 綠＝跌 */
-  --accent: #ffb020;
-  --accent-soft: #33240a;
+  --up: #fb7185; /* 紅＝漲 */
+  --up-dim: #4c0519;
+  --down: #4ade80; /* 綠＝跌 */
+  --accent: #fbbf24; /* 中性強調色，避開紅綠語意 */
+  --accent-dim: #422006;
 
-  --radius: 10px;
-  --mono: "JetBrains Mono", "Cascadia Mono", Consolas, "Roboto Mono", ui-monospace, monospace;
+  --radius: 8px;
+  --gap: 0.5rem;
+  --pad-card: 0.75rem;
+  --motion: 180ms;
+
+  --sans: "Fira Sans", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui,
+    sans-serif;
+  --mono: "Fira Code", "Cascadia Mono", Consolas, ui-monospace, monospace;
 }
 
 * {
@@ -47,10 +56,33 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-family: var(--sans);
   font-size: 1rem;
-  line-height: 1.55;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+/* 數字、日期一律等寬，讓成列的日期對齊 */
+.tabular {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* ------------------------------------------------------- 背景 K 線動畫 */
@@ -71,11 +103,11 @@ body > *:not(#candles) {
 /* ---------------------------------------------------------------- 頂部說明 */
 .notice {
   margin: 0;
-  padding: 0.5rem clamp(0.75rem, 3vw, 1.75rem);
-  font-size: 0.8rem;
-  line-height: 1.5;
+  padding: 0.4rem clamp(0.75rem, 3vw, 1.5rem);
+  font-size: 0.78rem;
+  line-height: 1.45;
   color: var(--text-dim);
-  background: linear-gradient(90deg, var(--accent-soft), transparent 60%);
+  background: linear-gradient(90deg, var(--accent-dim), transparent 55%);
   border-bottom: 1px solid var(--line);
 }
 
@@ -88,104 +120,125 @@ body > *:not(#candles) {
   position: sticky;
   top: 0;
   z-index: 20;
-  padding: 0.7rem clamp(0.75rem, 3vw, 1.75rem) 0.6rem;
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  backdrop-filter: blur(14px);
-  border-bottom: 2px solid var(--line);
+  padding: 0.55rem clamp(0.75rem, 3vw, 1.5rem) 0.5rem;
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
 }
 
 .topbar__row {
   display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
+  align-items: center;
+  gap: 0.6rem;
   flex-wrap: wrap;
 }
 
 .topbar h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   margin: 0;
-  font-size: 1.2rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
-.topbar h1::before {
-  content: "▮";
-  margin-right: 0.4rem;
-  color: var(--up);
+.topbar h1 .icon {
+  width: 1.15em;
+  height: 1.15em;
+  color: var(--accent);
 }
 
 .scope {
   margin: 0;
   color: var(--text-dim);
-  font-family: var(--mono);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
 }
 
 .controls {
   display: flex;
-  gap: 0.6rem;
-  margin-top: 0.6rem;
+  gap: var(--gap);
+  margin-top: 0.5rem;
   flex-wrap: wrap;
 }
 
 .search {
   position: relative;
-  flex: 1 1 20rem;
+  flex: 1 1 18rem;
   display: flex;
-  gap: 0.4rem;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.search .icon--search {
+  position: absolute;
+  left: 0.6rem;
+  width: 0.95rem;
+  height: 0.95rem;
+  color: var(--muted);
+  pointer-events: none;
 }
 
 .search input {
   flex: 1;
-  padding: 0.55rem 0.75rem;
+  padding: 0.45rem 0.6rem 0.45rem 2rem;
   font: inherit;
+  font-size: 0.88rem;
   color: var(--text);
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 0.5rem;
+  border-radius: var(--radius);
+  transition: border-color var(--motion) ease;
 }
 
 .search input::placeholder {
   color: var(--muted);
 }
 
-.search input:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 1px;
+.search input:hover {
+  border-color: var(--surface-3);
 }
 
 .toggle {
   display: inline-flex;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 0.5rem;
+  border-radius: var(--radius);
   overflow: hidden;
 }
 
 .toggle button {
-  padding: 0.55rem 1.1rem;
+  padding: 0.45rem 0.9rem;
   font: inherit;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--text-dim);
   background: none;
   border: 0;
   cursor: pointer;
+  transition: background var(--motion) ease, color var(--motion) ease;
+}
+
+.toggle button:hover:not(.is-on) {
+  background: var(--surface-2);
+  color: var(--text);
 }
 
 .toggle button.is-on {
-  color: #0a0e15;
+  color: #020617;
   background: var(--accent);
 }
 
 .ghost {
-  padding: 0.45rem 0.7rem;
+  padding: 0.4rem 0.65rem;
   font: inherit;
   font-size: 0.8rem;
   color: var(--text-dim);
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 0.5rem;
+  border-radius: var(--radius);
   cursor: pointer;
+  transition: border-color var(--motion) ease, color var(--motion) ease;
 }
 
 .ghost:hover {
@@ -197,24 +250,26 @@ body > *:not(#candles) {
 .fontsize {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.2rem 0.4rem;
+  gap: 0.25rem;
+  padding: 0.15rem 0.3rem;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 0.5rem;
+  border-radius: var(--radius);
 }
 
 .fontsize button {
-  width: 1.9rem;
-  height: 1.7rem;
+  min-width: 2.1rem;
+  min-height: 2.1rem;
   font: inherit;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--text-dim);
   background: var(--surface-2);
   border: 1px solid var(--line);
-  border-radius: 0.35rem;
+  border-radius: 6px;
   cursor: pointer;
   line-height: 1;
+  transition: color var(--motion) ease, border-color var(--motion) ease;
 }
 
 .fontsize button:hover:not(:disabled) {
@@ -224,41 +279,43 @@ body > *:not(#candles) {
 
 .fontsize button:disabled {
   opacity: 0.35;
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .fontsize span {
-  min-width: 3.2rem;
+  min-width: 3.4rem;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--muted);
   text-align: center;
 }
 
 .filters {
   display: flex;
-  gap: 0.6rem;
+  gap: var(--gap);
   align-items: center;
   justify-content: space-between;
-  margin-top: 0.6rem;
+  margin-top: 0.5rem;
   flex-wrap: wrap;
 }
 
 .chips {
   display: flex;
-  gap: 0.35rem;
+  gap: 0.3rem;
   flex-wrap: wrap;
 }
 
 .chip {
-  padding: 0.22rem 0.7rem;
+  padding: 0.18rem 0.6rem;
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-dim);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 999px;
   cursor: pointer;
+  transition: color var(--motion) ease, border-color var(--motion) ease,
+    background var(--motion) ease;
 }
 
 .chip:hover {
@@ -267,7 +324,7 @@ body > *:not(#candles) {
 }
 
 .chip.is-on {
-  color: #0a0e15;
+  color: #020617;
   background: var(--accent);
   border-color: var(--accent);
   font-weight: 700;
@@ -275,140 +332,161 @@ body > *:not(#candles) {
 
 .filters__right {
   display: flex;
-  gap: 0.55rem;
+  gap: 0.5rem;
   align-items: center;
   flex-wrap: wrap;
 }
 
 .switch {
   display: inline-flex;
-  gap: 0.35rem;
+  gap: 0.3rem;
   align-items: center;
-  font-size: 0.8rem;
+  min-height: 1.9rem;
+  font-size: 0.78rem;
   color: var(--text-dim);
   cursor: pointer;
 }
 
 .switch input {
   accent-color: var(--accent);
-  width: 0.95rem;
-  height: 0.95rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  cursor: pointer;
 }
 
 /* ------------------------------------------------------------------ board */
 main {
-  padding: 0.9rem clamp(0.75rem, 3vw, 1.75rem) 2.5rem;
+  padding: 0.75rem clamp(0.75rem, 3vw, 1.5rem) 2rem;
 }
 
 .section-label {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 0.6rem;
-  font-size: 0.82rem;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
   color: var(--muted);
+  text-transform: uppercase;
 }
 
 .section-label::after {
   content: "";
   flex: 1;
   height: 1px;
-  background: var(--line);
+  background: var(--line-soft);
 }
 
 .section-label--exchange {
-  color: hsl(42 85% 68%);
+  color: var(--accent);
 }
 
 .section-label--exchange::after {
-  background: hsl(42 50% 35%);
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
-/* 期交所三塊置中排一排，維持與期貨商卡片相同的寬度感 */
+/* 期交所三塊置中排一排 */
 .exchange {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: var(--gap);
   align-items: start;
-  max-width: 72rem;
-  margin: 0 auto 1.8rem;
+  max-width: 68rem;
+  margin: 0 auto 1.5rem;
 }
 
 .board {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
-  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: var(--gap);
   align-items: start;
 }
 
-/* 每家一個色相，由 app.js 指定 --hue */
+/* 每個來源一個色相，由 app.js 指定 --hue */
 .card {
   --hue: 210;
-  background: linear-gradient(
-    180deg,
-    hsl(var(--hue) 34% 14%) 0%,
-    var(--surface) 5.5rem
-  );
-  border: 1px solid hsl(var(--hue) 30% 30%);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-top: 2px solid hsl(var(--hue) 65% 55%);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 35%);
 }
 
 .card__head {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 0.8rem;
-  background: hsl(var(--hue) 42% 22%);
-  border-bottom: 2px solid hsl(var(--hue) 55% 45%);
+  gap: 0.45rem;
+  padding: 0.5rem var(--pad-card);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
 }
 
 .card__head h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   margin: 0;
-  font-size: 0.98rem;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: 0.02em;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.card__head h2::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 2px;
+  background: hsl(var(--hue) 70% 60%);
 }
 
 .card__head a {
-  color: hsl(var(--hue) 70% 82%);
-  font-size: 0.74rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  color: var(--muted);
+  font-size: 0.77rem;
   text-decoration: none;
   white-space: nowrap;
+  transition: color var(--motion) ease;
 }
 
 .card__head a:hover {
-  color: #fff;
-  text-decoration: underline;
+  color: var(--accent);
+}
+
+.card__head a .icon {
+  width: 0.8em;
+  height: 0.8em;
 }
 
 .count {
   margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
   font-family: var(--mono);
-  font-size: 0.74rem;
-  color: hsl(var(--hue) 60% 85%);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.77rem;
+  color: var(--muted);
 }
 
 .warn {
-  font-size: 0.85rem;
+  display: inline-flex;
   color: var(--accent);
+}
+
+.warn .icon {
+  width: 0.95rem;
+  height: 0.95rem;
 }
 
 .items {
   margin: 0;
   padding: 0;
   list-style: none;
-  max-height: 26rem;
+  max-height: 24rem;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--line) transparent;
+  scrollbar-color: var(--surface-3) transparent;
 }
 
 .items li {
@@ -421,11 +499,13 @@ main {
 
 .item {
   display: grid;
-  gap: 0.15rem;
-  padding: 0.5rem 0.8rem;
+  gap: 0.1rem;
+  padding: 0.4rem var(--pad-card);
   color: inherit;
   text-decoration: none;
-  border-left: 3px solid transparent;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  transition: background var(--motion) ease, border-color var(--motion) ease;
 }
 
 .item:hover {
@@ -433,92 +513,103 @@ main {
   border-left-color: var(--accent);
 }
 
-/* 時間軸上以來源期貨商的色相標示左緣 */
+/* 時間軸上以來源色相標示左緣 */
 .item--sourced {
-  border-left-color: hsl(var(--hue, 210) 60% 45%);
+  border-left-color: hsl(var(--hue, 210) 55% 42%);
 }
 
 .item--sourced:hover {
-  border-left-color: hsl(var(--hue, 210) 80% 62%);
+  border-left-color: hsl(var(--hue, 210) 75% 62%);
 }
 
 .item__meta {
   display: flex;
-  gap: 0.45rem;
+  gap: 0.4rem;
   align-items: center;
   font-family: var(--mono);
-  font-size: 0.74rem;
-  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.77rem;
+  color: var(--muted);
 }
 
 .item__title {
   font-size: 0.95rem;
-  line-height: 1.5;
-  color: var(--text);
+  line-height: 1.45;
+  color: var(--text-dim);
   cursor: zoom-in;
 }
 
+.item:hover .item__title {
+  color: var(--text);
+}
+
 .tag {
-  padding: 0 0.45rem;
-  font-family: inherit;
-  font-size: 0.7rem;
-  font-weight: 700;
-  border-radius: 0.25rem;
+  padding: 0 0.4rem;
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  border-radius: 3px;
   background: var(--surface-3);
   color: var(--text-dim);
   white-space: nowrap;
 }
 
 .tag[data-tag="保證金"] {
-  background: var(--up-soft);
-  color: #ff8f8f;
+  background: var(--up-dim);
+  color: var(--up);
 }
 
 .tag[data-tag="假期"] {
-  background: #10301f;
-  color: #6ee7a0;
+  background: #052e16;
+  color: var(--down);
 }
 
 .tag[data-tag="系統"] {
-  background: #2b2340;
-  color: #c4b0ff;
+  background: #2e1065;
+  color: #c4b5fd;
 }
 
 .tag[data-tag="防詐"] {
-  background: var(--accent-soft);
-  color: #ffce70;
+  background: var(--accent-dim);
+  color: var(--accent);
 }
 
 .tag[data-tag="商品"] {
-  background: #0e2c3a;
-  color: #7fd8f5;
+  background: #082f49;
+  color: #7dd3fc;
+}
+
+.tag[data-tag="活動"] {
+  background: #4a044e;
+  color: #f0abfc;
 }
 
 .broker-name {
-  font-family: inherit;
-  font-weight: 700;
-  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 600;
 }
 
 mark {
-  padding: 0 0.12rem;
+  padding: 0 0.1rem;
   background: var(--accent);
-  color: #0a0e15;
-  border-radius: 0.15rem;
+  color: #020617;
+  border-radius: 2px;
   font-weight: 700;
 }
 
 .card__more {
   display: block;
   width: 100%;
-  padding: 0.55rem 0.75rem;
+  min-height: 2.1rem;
+  padding: 0.45rem 0.6rem;
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-dim);
   background: var(--surface-2);
   border: 0;
   border-top: 1px solid var(--line);
   cursor: pointer;
+  transition: color var(--motion) ease, background var(--motion) ease;
 }
 
 .card__more:hover {
@@ -531,21 +622,21 @@ mark {
   max-width: 60rem;
   margin: 0 auto;
   background: var(--surface);
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-soft);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 35%);
 }
 
 .timeline .day {
   position: sticky;
   top: 0;
-  padding: 0.4rem 1rem;
+  padding: 0.3rem var(--pad-card);
   font-family: var(--mono);
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.72rem;
+  font-weight: 600;
   color: var(--accent);
-  background: var(--surface-3);
+  background: var(--surface-2);
   border-bottom: 1px solid var(--line);
 }
 
@@ -569,51 +660,55 @@ mark {
 .lens {
   position: fixed;
   z-index: 60;
-  max-width: min(38rem, 80vw);
-  padding: 0.6rem 0.9rem;
-  font-size: 1.35rem;
-  font-weight: 700;
-  line-height: 1.45;
+  display: flex;
+  gap: 0.5rem;
+  max-width: min(36rem, 80vw);
+  padding: 0.5rem 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
   color: var(--text);
-  background: var(--surface-3);
-  border: 2px solid var(--accent);
-  border-radius: 0.6rem;
-  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 60%);
+  background: var(--surface-2);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 65%);
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.12s ease;
+  transition: opacity var(--motion) ease;
 }
 
 .lens.is-on {
   opacity: 1;
 }
 
-.lens::before {
-  content: "🔍";
-  margin-right: 0.4rem;
-  font-size: 0.9em;
+.lens .icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.2rem;
+  color: var(--accent);
 }
 
-.lens .lens__meta {
+.lens__meta {
   display: block;
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
   font-family: var(--mono);
-  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.75rem;
   font-weight: 400;
   color: var(--muted);
 }
 
 /* ------------------------------------------------------------------ 頁尾 */
 .foot {
-  padding: 0.75rem clamp(0.75rem, 3vw, 1.75rem) 2rem;
+  padding: 0.6rem clamp(0.75rem, 3vw, 1.5rem) 1.5rem;
   color: var(--text-dim);
-  font-size: 0.78rem;
-  border-top: 2px solid var(--line);
+  font-size: 0.75rem;
+  border-top: 1px solid var(--line);
   background: var(--surface);
 }
 
 .foot p {
-  margin: 0.25rem 0;
+  margin: 0.2rem 0;
 }
 
 .foot a {
@@ -622,26 +717,61 @@ mark {
 
 #update-info {
   font-family: var(--mono);
-  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
   color: var(--text);
 }
 
 #schedule-info {
   font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
 }
 
 .errors {
   color: var(--up);
-  font-weight: 700;
+  font-weight: 600;
 }
 
-@media (max-width: 35rem) {
+/* --------------------------------------------------------------- 響應式 */
+@media (max-width: 1024px) {
+  .exchange,
+  .board {
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .items {
+    max-height: 20rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .exchange,
+  .board {
+    grid-template-columns: 1fr;
+  }
+
   .items {
     max-height: none;
   }
 
-  .board {
-    grid-template-columns: 1fr;
+  .filters {
+    justify-content: flex-start;
+  }
+}
+
+/* 觸控裝置把可點區域放大到 44px 以上 */
+@media (pointer: coarse) {
+  .fontsize button,
+  .toggle button,
+  .ghost,
+  .card__more {
+    min-height: 2.75rem;
+  }
+
+  .chip {
+    padding: 0.5rem 0.9rem;
   }
 }
 
@@ -650,7 +780,7 @@ mark {
     display: none;
   }
 
-  .lens {
-    transition: none;
+  * {
+    transition-duration: 0.01ms !important;
   }
 }
