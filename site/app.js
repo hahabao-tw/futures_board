@@ -1,4 +1,3 @@
-const SEEN_KEY = 'futures-board.seen';
 const PREFS_KEY = 'futures-board.prefs';
 const TAGS = ['保證金', '假期', '系統', '商品', '防詐', '活動', '其他'];
 const CARD_PREVIEW = 40; // 每張卡先顯示幾則，其餘按「顯示全部」再展開
@@ -6,25 +5,26 @@ const TIMELINE_CHUNK = 300;
 /** 台灣時間的自動更新時刻，與 .github/workflows/scrape.yml 的 cron 一致。 */
 const UPDATE_HOURS = [8, 11, 15, 19, 23];
 
-/** 字級可選的基準值（px）。預設取索引 2，比原本的 15px 大一級。 */
+/** 字級可選的基準值（px）。 */
 const FONT_STEPS = [13.5, 15, 16.5, 18, 20, 22];
-const DEFAULT_FONT_STEP = 2;
+const DEFAULT_FONT_STEP = 1; // 介面上顯示為「字級 2/6」
 
-/** 每家期貨商的專屬色相，讓卡片一眼分得出來。 */
+/** 期交所三塊共用金色；期貨商各自一個色相，卡片一眼分得出來。 */
+const EXCHANGE_HUE = 42;
 const BROKER_HUE = {
-  tsfutures: 350, // 台新 紅
-  ibff: 18, // 國票 橙
   dcnf: 40, // 大昌 琥珀
-  fubon: 145, // 富邦 綠
-  concord: 172, // 康和 青
-  mega: 196, // 兆豐 天藍
-  spf: 218, // 永豐 藍
-  kgi: 250, // 凱基 靛
-  entrust: 275, // 華南 紫
-  cathay: 300, // 國泰 洋紅
-  capital: 325, // 群益 桃
-  pfcf: 95, // 統一 黃綠
   yuanta: 8, // 元大 朱紅
+  tsfutures: 350, // 台新 紅
+  spf: 218, // 永豐 藍
+  mega: 196, // 兆豐 天藍
+  concord: 172, // 康和 青
+  cathay: 300, // 國泰 洋紅
+  ibff: 18, // 國票 橙
+  pfcf: 95, // 統一 黃綠
+  fubon: 145, // 富邦 綠
+  entrust: 275, // 華南 紫
+  kgi: 250, // 凱基 靛
+  capital: 325, // 群益 桃
 };
 
 const el = {
@@ -37,12 +37,12 @@ const el = {
   tagFilters: document.getElementById('tag-filters'),
   showMargin: document.getElementById('show-margin'),
   showMarginLabel: document.getElementById('show-margin-label'),
-  onlyNew: document.getElementById('only-new'),
-  markAll: document.getElementById('mark-all'),
   fontUp: document.getElementById('font-up'),
   fontDown: document.getElementById('font-down'),
   fontLevel: document.getElementById('font-level'),
   lens: document.getElementById('lens'),
+  boardWrap: document.getElementById('board-wrap'),
+  exchange: document.getElementById('exchange'),
   board: document.getElementById('board'),
   timeline: document.getElementById('timeline'),
   empty: document.getElementById('empty'),
@@ -54,11 +54,9 @@ const el = {
 const prefs = loadPrefs();
 
 const state = {
-  data: { brokers: [], generatedAt: null, since: null, excludedKeywords: [] },
-  seen: loadSeen(),
+  data: { exchanges: [], brokers: [], generatedAt: null, since: null, excludedKeywords: [] },
   query: '',
   tags: new Set(),
-  onlyNew: false,
   showMargin: prefs.showMargin ?? false, // 保證金公告量最大，預設收合
   fontStep: clampStep(prefs.fontStep ?? DEFAULT_FONT_STEP),
   view: 'board',
@@ -84,13 +82,6 @@ async function init() {
     el.empty.hidden = false;
     el.empty.textContent = `讀取資料失敗：${err.message}`;
     return;
-  }
-
-  // First visit: treat everything as already read, so the board doesn't open
-  // with thousands of unread markers on day one.
-  if (state.seen === null) {
-    state.seen = new Set(allItems().map((it) => it.id));
-    saveSeen();
   }
 
   renderMeta();
@@ -126,17 +117,6 @@ function bindEvents() {
     state.showMargin = el.showMargin.checked;
     savePrefs();
     state.timelineLimit = TIMELINE_CHUNK;
-    render();
-  });
-
-  el.onlyNew.addEventListener('change', () => {
-    state.onlyNew = el.onlyNew.checked;
-    render();
-  });
-
-  el.markAll.addEventListener('click', () => {
-    allItems().forEach((it) => state.seen.add(it.id));
-    saveSeen();
     render();
   });
 
@@ -240,7 +220,7 @@ function renderTagFilters() {
 function renderMeta() {
   const excluded = state.data.excludedKeywords ?? [];
   el.excludedNotice.textContent = excluded.length
-    ? `本看板不收錄以下類別的公告：${excluded.join('、')}。這些請直接到各期貨商官網查看。`
+    ? `本看板不收錄以下類別的公告：${excluded.join('、')}。這些請直接到各來源官網查看。`
     : '';
 
   const total = allItems().length;
@@ -256,87 +236,85 @@ function renderMeta() {
     `自動更新時刻（台灣時間）：${UPDATE_HOURS.map((h) => `${String(h).padStart(2, '0')}:00`).join('、')}` +
     `，有新公告才會更新。`;
 
-  const broken = state.data.brokers.filter((b) => !b.ok);
+  const broken = allSources().filter((s) => !s.ok);
   el.errors.textContent = broken.length
-    ? `本次抓取失敗：${broken.map((b) => b.name).join('、')}（顯示上次成功的內容）`
+    ? `本次抓取失敗：${broken.map((s) => s.name).join('、')}（顯示上次成功的內容）`
     : '';
 }
 
 function render() {
-  const brokers = state.data.brokers.map((broker) => ({
-    ...broker,
-    visible: broker.items.filter(matches),
-  }));
-  const total = brokers.reduce((n, b) => n + b.visible.length, 0);
+  const exchanges = withVisible(state.data.exchanges);
+  const brokers = withVisible(state.data.brokers);
+  const total = [...exchanges, ...brokers].reduce((n, s) => n + s.visible.length, 0);
 
   el.empty.hidden = total > 0;
-  el.board.hidden = state.view !== 'board';
+  el.boardWrap.hidden = state.view !== 'board';
   el.timeline.hidden = state.view !== 'timeline';
 
-  if (state.view === 'board') el.board.replaceChildren(...brokers.map(renderCard));
-  else renderTimeline(brokers);
+  if (state.view === 'board') {
+    el.exchange.replaceChildren(...exchanges.map((s) => renderCard(s, EXCHANGE_HUE)));
+    el.board.replaceChildren(...brokers.map((s) => renderCard(s, BROKER_HUE[s.id] ?? 210)));
+  } else {
+    renderTimeline([...exchanges, ...brokers]);
+  }
 }
 
-function renderCard(broker) {
+function withVisible(sources) {
+  return (sources ?? []).map((source) => ({ ...source, visible: source.items.filter(matches) }));
+}
+
+function renderCard(source, hue) {
   const card = document.createElement('article');
   card.className = 'card';
-  card.style.setProperty('--hue', String(BROKER_HUE[broker.id] ?? 210));
+  card.style.setProperty('--hue', String(hue));
 
   const head = document.createElement('div');
   head.className = 'card__head';
 
   const title = document.createElement('h2');
-  title.textContent = broker.name;
+  title.textContent = source.name;
   head.append(title);
 
   const link = document.createElement('a');
-  link.href = broker.board;
+  link.href = source.board;
   link.target = '_blank';
   link.rel = 'noopener';
-  link.textContent = '官網公告 ↗';
-  link.title = broker.feeds ? `來源：${broker.feeds}` : '';
+  link.textContent = '原站 ↗';
+  link.title = source.feeds ? `來源：${source.feeds}` : '';
   head.append(link);
 
-  const unread = broker.visible.filter((it) => !state.seen.has(it.id)).length;
   const count = document.createElement('span');
   count.className = 'count';
-  count.textContent = `${broker.visible.length} 則`;
-  if (unread > 0) {
-    const badge = document.createElement('span');
-    badge.className = 'badge-new';
-    badge.textContent = String(unread);
-    badge.title = `${unread} 則未讀`;
-    count.prepend(badge);
-  }
+  count.textContent = `${source.visible.length} 則`;
   head.append(count);
 
-  if (!broker.ok) {
+  if (!source.ok) {
     const warn = document.createElement('span');
     warn.className = 'warn';
     warn.textContent = '⚠';
-    warn.title = `抓取失敗：${broker.error ?? '未知錯誤'}`;
+    warn.title = `抓取失敗：${source.error ?? '未知錯誤'}`;
     head.append(warn);
   }
 
   card.append(head);
 
-  const expanded = state.expanded.has(broker.id);
-  const shown = expanded ? broker.visible : broker.visible.slice(0, CARD_PREVIEW);
+  const expanded = state.expanded.has(source.id);
+  const shown = expanded ? source.visible : source.visible.slice(0, CARD_PREVIEW);
 
   const list = document.createElement('ul');
   list.className = 'items';
   list.append(...shown.map((item) => renderItem(item)));
   card.append(list);
 
-  if (broker.visible.length > CARD_PREVIEW) {
+  if (source.visible.length > CARD_PREVIEW) {
     const more = document.createElement('button');
     more.type = 'button';
     more.className = 'card__more';
     more.textContent = expanded
       ? '收合'
-      : `顯示全部 ${broker.visible.length.toLocaleString('zh-TW')} 則`;
+      : `顯示全部 ${source.visible.length.toLocaleString('zh-TW')} 則`;
     more.addEventListener('click', () => {
-      expanded ? state.expanded.delete(broker.id) : state.expanded.add(broker.id);
+      expanded ? state.expanded.delete(source.id) : state.expanded.add(source.id);
       render();
     });
     card.append(more);
@@ -344,9 +322,9 @@ function renderCard(broker) {
   return card;
 }
 
-function renderTimeline(brokers) {
-  const items = brokers
-    .flatMap((b) => b.visible.map((it) => ({ ...it, broker: b.name, brokerId: b.id })))
+function renderTimeline(sources) {
+  const items = sources
+    .flatMap((s) => s.visible.map((it) => ({ ...it, source: s.name, sourceId: s.id })))
     .sort(
       (a, b) =>
         Number(a.pinned ?? false) - Number(b.pinned ?? false) ||
@@ -369,7 +347,7 @@ function renderTimeline(brokers) {
     nodes.push(heading);
 
     const list = document.createElement('ul');
-    list.append(...rows.map((item) => renderItem(item, { showBroker: true })));
+    list.append(...rows.map((item) => renderItem(item, { showSource: true })));
     nodes.push(list);
   }
 
@@ -387,31 +365,17 @@ function renderTimeline(brokers) {
   el.timeline.replaceChildren(...nodes);
 }
 
-function renderItem(item, { showBroker = false } = {}) {
+function renderItem(item, { showSource = false } = {}) {
   const li = document.createElement('li');
-  const isNew = !state.seen.has(item.id);
 
   const anchor = document.createElement('a');
-  anchor.className = `item${isNew ? ' is-new' : ''}`;
+  anchor.className = 'item';
   anchor.href = item.url;
   anchor.target = '_blank';
   anchor.rel = 'noopener';
-  anchor.addEventListener('click', () => {
-    if (!state.seen.has(item.id)) {
-      state.seen.add(item.id);
-      saveSeen();
-      anchor.classList.remove('is-new');
-      anchor.querySelector('.dot')?.classList.add('is-hidden');
-    }
-  });
 
   const meta = document.createElement('span');
   meta.className = 'item__meta';
-
-  const dot = document.createElement('span');
-  dot.className = `dot${isNew ? '' : ' is-hidden'}`;
-  dot.title = '未讀';
-  meta.append(dot);
 
   const date = document.createElement('span');
   date.textContent = item.pinned ? '置頂' : (item.date ?? '—');
@@ -424,16 +388,16 @@ function renderItem(item, { showBroker = false } = {}) {
   tag.title = item.category ?? '';
   meta.append(tag);
 
-  if (showBroker) {
-    const broker = document.createElement('span');
-    broker.className = 'broker-name';
-    broker.textContent = item.broker;
-    // 時間軸上各家混在一起，用同一組色相標出來源。
-    const hue = BROKER_HUE[item.brokerId] ?? 210;
-    broker.style.color = `hsl(${hue} 75% 72%)`;
+  if (showSource) {
+    const source = document.createElement('span');
+    source.className = 'broker-name';
+    source.textContent = item.source;
+    // 時間軸上各來源混在一起，用同一組色相標出來源。
+    const hue = BROKER_HUE[item.sourceId] ?? EXCHANGE_HUE;
+    source.style.color = `hsl(${hue} 75% 72%)`;
     anchor.style.setProperty('--hue', String(hue));
     anchor.classList.add('item--sourced');
-    meta.append(broker);
+    meta.append(source);
   }
 
   const title = document.createElement('span');
@@ -449,7 +413,6 @@ function renderItem(item, { showBroker = false } = {}) {
 function matches(item) {
   // 保證金量最大，預設收起來；但使用者若主動點選「保證金」分類，就以分類篩選為準。
   if (!state.showMargin && item.tag === '保證金' && !state.tags.has('保證金')) return false;
-  if (state.onlyNew && state.seen.has(item.id)) return false;
   if (state.tags.size > 0 && !state.tags.has(item.tag)) return false;
   if (state.query && !item.title.toLowerCase().includes(state.query.toLowerCase())) return false;
   return true;
@@ -484,28 +447,12 @@ function formatDay(day) {
   return `${day}（週${weekday}）`;
 }
 
+function allSources() {
+  return [...(state.data.exchanges ?? []), ...(state.data.brokers ?? [])];
+}
+
 function allItems() {
-  return state.data.brokers.flatMap((b) => b.items);
-}
-
-function loadSeen() {
-  try {
-    const raw = localStorage.getItem(SEEN_KEY);
-    return raw === null ? null : new Set(JSON.parse(raw));
-  } catch {
-    return new Set();
-  }
-}
-
-function saveSeen() {
-  // Cap the stored set so it can't grow without bound as items age out.
-  const ids = [...state.seen].slice(-8000);
-  state.seen = new Set(ids);
-  try {
-    localStorage.setItem(SEEN_KEY, JSON.stringify(ids));
-  } catch {
-    /* storage full or blocked — unread state is a nicety, not critical */
-  }
+  return allSources().flatMap((s) => s.items);
 }
 
 function loadPrefs() {

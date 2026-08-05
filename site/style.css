@@ -4,7 +4,7 @@
  * 台股慣例：紅漲綠跌，所以紅色是強調色而非警示色。
  */
 :root {
-  --ui-size: 16.5px; /* 由字級按鈕改寫 */
+  --ui-size: 15px; /* 由字級按鈕改寫，預設對應「字級 2/6」 */
 
   --bg: #0a0e15;
   --bg-grid: #121826;
@@ -300,6 +300,42 @@ main {
   padding: 0.9rem clamp(0.75rem, 3vw, 1.75rem) 2.5rem;
 }
 
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.section-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.section-label--exchange {
+  color: hsl(42 85% 68%);
+}
+
+.section-label--exchange::after {
+  background: hsl(42 50% 35%);
+}
+
+/* 期交所三塊置中排一排，維持與期貨商卡片相同的寬度感 */
+.exchange {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  gap: 0.85rem;
+  align-items: start;
+  max-width: 72rem;
+  margin: 0 auto 1.8rem;
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
@@ -360,18 +396,6 @@ main {
   color: hsl(var(--hue) 60% 85%);
 }
 
-.badge-new {
-  min-width: 1.15rem;
-  padding: 0.05rem 0.4rem;
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-align: center;
-  color: #fff;
-  background: var(--up);
-  border-radius: 999px;
-}
-
 .warn {
   font-size: 0.85rem;
   color: var(--accent);
@@ -409,10 +433,6 @@ main {
   border-left-color: var(--accent);
 }
 
-.item.is-new {
-  border-left-color: var(--up);
-}
-
 /* 時間軸上以來源期貨商的色相標示左緣 */
 .item--sourced {
   border-left-color: hsl(var(--hue, 210) 60% 45%);
@@ -436,23 +456,6 @@ main {
   line-height: 1.5;
   color: var(--text);
   cursor: zoom-in;
-}
-
-.item.is-new .item__title {
-  font-weight: 700;
-}
-
-.dot {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: var(--up);
-  box-shadow: 0 0 0.4rem var(--up);
-  flex: none;
-}
-
-.dot.is-hidden {
-  visibility: hidden;
 }
 
 .tag {

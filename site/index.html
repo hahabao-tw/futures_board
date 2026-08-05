@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>期貨商公告看板</title>
-    <meta name="description" content="彙整 13 家台灣期貨商官網公告區，一頁看完。" />
+    <meta
+      name="description"
+      content="彙整臺灣期貨交易所與 13 家期貨商官網公告區，一頁看完。"
+    />
     <meta name="color-scheme" content="dark" />
     <link rel="stylesheet" href="style.css" />
     <link
@@ -37,7 +40,7 @@
 
         <div class="fontsize" role="group" aria-label="字體大小">
           <button id="font-down" type="button" aria-label="縮小字體">A−</button>
-          <span id="font-level">字級 3/6</span>
+          <span id="font-level">字級 2/6</span>
           <button id="font-up" type="button" aria-label="放大字體">A+</button>
         </div>
 
@@ -54,18 +57,21 @@
             <input type="checkbox" id="show-margin" />
             <span id="show-margin-label">顯示保證金公告</span>
           </label>
-          <label class="switch">
-            <input type="checkbox" id="only-new" />
-            <span>只看未讀</span>
-          </label>
-          <button id="mark-all" class="ghost" type="button">全部標為已讀</button>
         </div>
       </div>
     </header>
 
     <main>
       <p class="empty" id="empty" hidden>沒有符合條件的公告。</p>
-      <section id="board" class="board"></section>
+
+      <div id="board-wrap">
+        <h2 class="section-label section-label--exchange">臺灣期貨交易所</h2>
+        <section id="exchange" class="exchange"></section>
+
+        <h2 class="section-label">期貨商（依名稱筆劃排序）</h2>
+        <section id="board" class="board"></section>
+      </div>
+
       <section id="timeline" class="timeline" hidden></section>
     </main>
 
@@ -75,7 +81,7 @@
       <p id="update-info"></p>
       <p id="schedule-info"></p>
       <p>
-        資料由各期貨商官網公告區自動彙整，僅供快速瀏覽；正式內容以各公司官網為準。
+        資料由臺灣期貨交易所與各期貨商官網公告區自動彙整，僅供快速瀏覽；正式內容以各官網為準。
         <span id="broker-errors" class="errors"></span>
       </p>
       <p>管理員信箱：<a href="mailto:7537@entrust.com.tw">7537@entrust.com.tw</a></p>
