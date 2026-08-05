@@ -82,13 +82,14 @@ if (signatureOf(results) === previousSignature) {
 }
 
 /**
- * 「這次抓到的公告集合」的指紋。刻意排序後再比對，這樣即使來源回傳順序有
- * 些微差異，只要公告本身沒變就不算更新。
+ * 「這次的看板內容」的指紋。公告集合刻意排序後再比對，這樣即使來源回傳順序
+ * 有些微差異，只要公告本身沒變就不算更新。名稱與連結也納入比對，否則改了
+ * 來源名稱卻沒有新公告時，data.json 不會被改寫，畫面也就不會更新。
  */
 function signatureOf(sources) {
   return JSON.stringify(
     sources
-      .map((s) => [s.id, s.items.map((it) => it.id).sort()])
+      .map((s) => [s.id, s.name, s.board, s.items.map((it) => it.id).sort()])
       .sort((a, b) => a[0].localeCompare(b[0]))
   );
 }

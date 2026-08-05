@@ -31,7 +31,7 @@ export const EXCHANGES = [
   },
   {
     id: 'taifex-adjust',
-    name: '股票期貨/選擇權契約調整',
+    name: '期交所 股票期貨/選擇權契約調整',
     board: 'https://www.taifex.com.tw/cht/11/adjustContract',
     feeds: '臺灣期貨交易所 最新消息／契約調整',
     fetch: taifexFeed('adjustContract'),
