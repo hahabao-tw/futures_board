@@ -78,14 +78,23 @@ function pad(y, mo, d) {
   return `${y}-${String(mo).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
 }
 
-/** Collapses each broker's own category vocabulary into a shared tag set. */
+/**
+ * Collapses each broker's own category vocabulary into a shared tag set.
+ * 依序比對，第一條命中就定案，所以順序本身就是優先權。
+ *
+ * 兩個刻意的安排：
+ * - 「活動」排在「商品」前面。像「黃金類商品交易獎勵活動」這種標題兩邊都中，
+ *   它的重點是活動而不是商品。
+ * - 「開戶」不列為活動關鍵字。期貨商講開戶多半是指開戶作業規定（開戶文件改版、
+ *   無戶籍國民開戶事宜），不是開戶優惠，只認明確的行銷字眼。
+ */
 const TAG_RULES = [
   [/保證金|margin/i, '保證金'],
   [/假期|休市|holiday|交易時間|時段/, '假期'],
   [/詐|反詐|防詐/, '防詐'],
-  [/系統|平台|維護|異常|網路|降速|入金|出金/, '系統'],
+  [/系統|平台|維護|異常|網路|降速|入金|出金|暫停服務|停機|中斷/, '系統'],
+  [/活動|講座|課程|報名|優惠|開戶禮|得獎名單|抽獎/, '活動'],
   [/新商品|上市|新增|契約|上架|商品/, '商品'],
-  [/活動|講座|課程|優惠|開戶/, '活動'],
 ];
 
 export function normaliseTag(rawCategory, title = '') {
