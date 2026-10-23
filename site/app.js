@@ -1,6 +1,10 @@
 const PREFS_KEY = 'futures-board.prefs';
+/** 上次離開頁面時的時間與當時看得到的公告 id，用來標出「之後才出現」的公告。 */
+const VISIT_KEY = 'futures-board.visit';
 const TAGS = ['保證金', '假期', '系統', '商品', '防詐', '活動', '其他'];
 const CARD_PREVIEW = 40; // 每張卡先顯示幾則，其餘按「顯示全部」再展開
+const CARD_PREVIEW_NARROW = 5; // 手機單欄時卡片全部堆疊，先收得更短
+const NARROW = window.matchMedia('(max-width: 480px)');
 const TIMELINE_CHUNK = 300;
 /** 台灣時間的自動更新時刻，與 .github/workflows/scrape.yml 的 cron 一致。 */
 const UPDATE_HOURS = [8, 11, 15, 19, 23];
@@ -29,7 +33,13 @@ const BROKER_HUE = {
 
 const el = {
   excludedNotice: document.getElementById('excluded-notice'),
+  sourceAlert: document.getElementById('source-alert'),
   scope: document.getElementById('scope'),
+  fresh: document.getElementById('fresh'),
+  onlyNew: document.getElementById('only-new'),
+  newCount: document.getElementById('new-count'),
+  markSeen: document.getElementById('mark-seen'),
+  sinceInfo: document.getElementById('since-info'),
   search: document.getElementById('search'),
   clearSearch: document.getElementById('clear-search'),
   viewBoard: document.getElementById('view-board'),
@@ -42,13 +52,14 @@ const el = {
   fontLevel: document.getElementById('font-level'),
   lens: document.getElementById('lens'),
   boardWrap: document.getElementById('board-wrap'),
+  exchangeLabel: document.getElementById('exchange-label'),
   exchange: document.getElementById('exchange'),
+  boardLabel: document.getElementById('board-label'),
   board: document.getElementById('board'),
   timeline: document.getElementById('timeline'),
   empty: document.getElementById('empty'),
   updateInfo: document.getElementById('update-info'),
   scheduleInfo: document.getElementById('schedule-info'),
-  errors: document.getElementById('broker-errors'),
 };
 
 const prefs = loadPrefs();
@@ -62,12 +73,14 @@ const state = {
   view: 'board',
   expanded: new Set(), // 哪些卡片已按下「顯示全部」
   timelineLimit: TIMELINE_CHUNK,
+  lastVisit: null, // 上次離開頁面的時間；第一次造訪為 null
+  newIds: new Set(), // 上次造訪之後才出現的公告 id
+  onlyNew: false,
 };
 
 init();
 
 async function init() {
-  lockContextMenu();
   applyFontStep();
   renderTagFilters();
   bindEvents();
@@ -84,13 +97,71 @@ async function init() {
     return;
   }
 
+  for (const group of ['exchanges', 'brokers']) {
+    state.data[group] = (state.data[group] ?? []).map(collapseRepeats);
+  }
+  trackVisit();
   renderMeta();
   render();
 }
 
-/** 鎖右鍵。純前端的嚇阻，開發者工具與檢視原始碼仍然繞得過去。 */
-function lockContextMenu() {
-  document.addEventListener('contextmenu', (event) => event.preventDefault());
+/**
+ * 同一來源、同一天、標題一字不差的公告合併成一列（元大的防詐公告常一天貼十幾則
+ * 相同標題）。不同天的同標題是週期性公告（每月契約調整、每日國外保證金），照常各列一則。
+ * 被合併的 id 收在 `ids`，新公告判定才不會漏掉。
+ */
+function collapseRepeats(source) {
+  const byKey = new Map();
+  const items = [];
+  for (const item of source.items) {
+    const key = `${item.title}|${item.date}`;
+    const kept = byKey.get(key);
+    if (kept) {
+      kept.ids.push(item.id);
+      continue;
+    }
+    const copy = { ...item, ids: [item.id] };
+    byKey.set(key, copy);
+    items.push(copy);
+  }
+  return { ...source, items };
+}
+
+/* ------------------------------------------------------------ 上次造訪之後 */
+/**
+ * 不追蹤逐則已讀，只比對「上次離開頁面時看得到哪些公告」。第一次造訪時全部視為看過，
+ * 免得一打開就是幾千則新公告。離開（分頁切走或關閉）時才寫回，所以這次標出的新公告
+ * 在整個瀏覽期間都會留著，下次打開才歸零。
+ */
+function trackVisit() {
+  const visit = loadVisit();
+  if (visit) {
+    const known = new Set(visit.ids);
+    state.lastVisit = visit.at;
+    state.newIds = new Set(allItems().flatMap((it) => it.ids).filter((id) => !known.has(id)));
+  }
+
+  // 背景分頁開啟（例如瀏覽器還原分頁）時使用者根本沒看到，不能算造訪過。
+  let seen = document.visibilityState === 'visible';
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') seen = true;
+    else if (seen) saveVisit();
+  });
+  window.addEventListener('pagehide', () => {
+    if (seen) saveVisit();
+  });
+}
+
+function markAllSeen() {
+  saveVisit();
+  state.lastVisit = new Date().toISOString();
+  state.newIds = new Set();
+  state.onlyNew = false;
+  render();
+}
+
+function isNew(item) {
+  return item.ids.some((id) => state.newIds.has(id));
 }
 
 /* ------------------------------------------------------------------ events */
@@ -122,6 +193,16 @@ function bindEvents() {
 
   el.fontUp.addEventListener('click', () => setFontStep(state.fontStep + 1));
   el.fontDown.addEventListener('click', () => setFontStep(state.fontStep - 1));
+
+  el.onlyNew.addEventListener('click', () => {
+    state.onlyNew = !state.onlyNew;
+    state.timelineLimit = TIMELINE_CHUNK;
+    render();
+  });
+  el.markSeen.addEventListener('click', markAllSeen);
+
+  // 旋轉手機或拉窄視窗時，卡片預覽則數跟著換。
+  NARROW.addEventListener('change', render);
 }
 
 /* -------------------------------------------------------------- 字級調整 */
@@ -238,15 +319,46 @@ function renderMeta() {
     `自動更新時刻（台灣時間）：${UPDATE_HOURS.map((h) => `${String(h).padStart(2, '0')}:00`).join('、')}` +
     `，有新公告才會更新。`;
 
+  // 抓取失敗放在頁首：只寫在頁尾的話，使用者會以為那家很久沒發公告。
   const broken = allSources().filter((s) => !s.ok);
-  el.errors.textContent = broken.length
-    ? `本次抓取失敗：${broken.map((s) => s.name).join('、')}（顯示上次成功的內容）`
-    : '';
+  el.sourceAlert.hidden = broken.length === 0;
+  el.sourceAlert.replaceChildren(
+    svgIcon('i-warn'),
+    broken
+      .map((s) => {
+        const fetched = s.fetchedAt ? ` ${formatStamp(s.fetchedAt)} 最後一次成功抓到的內容` : '上次的內容';
+        const latest = s.items[0]?.date ? `，最新一則是 ${s.items[0].date}` : '';
+        return `${s.name}抓取失敗，目前顯示${fetched}${latest}。`;
+      })
+      .join(' ')
+  );
+}
+
+/** 頂部的「新公告」區：數量、只看新公告、標為已看過。 */
+function renderFresh() {
+  el.fresh.hidden = state.lastVisit === null;
+  if (state.lastVisit === null) return;
+
+  const count = allItems().filter(isNew).length;
+  // 按鈕上的數字跟著目前的篩選走（例如保證金預設隱藏），按下去看到的則數才對得上。
+  const shown = allItems().filter((it) => isNew(it) && matches(it, { ignoreOnlyNew: true })).length;
+  el.newCount.textContent = shown.toLocaleString('zh-TW');
+  el.onlyNew.hidden = count === 0;
+  el.markSeen.hidden = count === 0;
+  el.onlyNew.classList.toggle('is-on', state.onlyNew);
+  el.onlyNew.setAttribute('aria-pressed', String(state.onlyNew));
+  el.sinceInfo.textContent =
+    count === 0
+      ? `${formatStamp(state.lastVisit)} 之後沒有新公告`
+      : `上次造訪 ${formatStamp(state.lastVisit)}`;
 }
 
 function render() {
-  const exchanges = withVisible(state.data.exchanges);
-  const brokers = withVisible(state.data.brokers);
+  renderFresh();
+  // 只看新公告時，沒有新公告的卡片整張收掉，否則畫面上會是十幾張空卡片。
+  const keep = (s) => !state.onlyNew || s.visible.length > 0;
+  const exchanges = withVisible(state.data.exchanges).filter(keep);
+  const brokers = withVisible(state.data.brokers).filter(keep);
   const total = [...exchanges, ...brokers].reduce((n, s) => n + s.visible.length, 0);
 
   el.empty.hidden = total > 0;
@@ -254,6 +366,8 @@ function render() {
   el.timeline.hidden = state.view !== 'timeline';
 
   if (state.view === 'board') {
+    el.exchangeLabel.hidden = exchanges.length === 0;
+    el.boardLabel.hidden = brokers.length === 0;
     el.exchange.replaceChildren(...exchanges.map((s) => renderCard(s, EXCHANGE_HUE)));
     el.board.replaceChildren(...brokers.map((s) => renderCard(s, BROKER_HUE[s.id] ?? 210)));
   } else {
@@ -285,6 +399,14 @@ function renderCard(source, hue) {
   link.title = source.feeds ? `來源：${source.feeds}` : '';
   head.append(link);
 
+  const fresh = source.visible.filter(isNew).length;
+  if (fresh > 0) {
+    const badge = document.createElement('span');
+    badge.className = 'new-count tabular';
+    badge.textContent = `${fresh} 新`;
+    head.append(badge);
+  }
+
   const count = document.createElement('span');
   count.className = 'count';
   count.textContent = `${source.visible.length} 則`;
@@ -293,22 +415,24 @@ function renderCard(source, hue) {
   if (!source.ok) {
     const warn = document.createElement('span');
     warn.className = 'warn';
-    warn.append(svgIcon('i-warn'));
+    warn.append(svgIcon('i-warn'), '抓取失敗');
     warn.title = `抓取失敗：${source.error ?? '未知錯誤'}`;
     head.append(warn);
   }
 
   card.append(head);
 
+  // 只看新公告時數量本來就少，全部列出，按鈕上的則數才對得上畫面。
+  const preview = state.onlyNew ? Infinity : NARROW.matches ? CARD_PREVIEW_NARROW : CARD_PREVIEW;
   const expanded = state.expanded.has(source.id);
-  const shown = expanded ? source.visible : source.visible.slice(0, CARD_PREVIEW);
+  const shown = expanded ? source.visible : source.visible.slice(0, preview);
 
   const list = document.createElement('ul');
   list.className = 'items';
   list.append(...shown.map((item) => renderItem(item)));
   card.append(list);
 
-  if (source.visible.length > CARD_PREVIEW) {
+  if (source.visible.length > preview) {
     const more = document.createElement('button');
     more.type = 'button';
     more.className = 'card__more';
@@ -375,9 +499,17 @@ function renderItem(item, { showSource = false } = {}) {
   anchor.href = item.url;
   anchor.target = '_blank';
   anchor.rel = 'noopener';
+  if (isNew(item)) anchor.classList.add('is-new');
 
   const meta = document.createElement('span');
   meta.className = 'item__meta';
+
+  if (isNew(item)) {
+    const fresh = document.createElement('span');
+    fresh.className = 'fresh-mark';
+    fresh.textContent = '新';
+    meta.append(fresh);
+  }
 
   const date = document.createElement('span');
   date.textContent = item.pinned ? '置頂' : (item.date ?? '—');
@@ -389,6 +521,14 @@ function renderItem(item, { showSource = false } = {}) {
   tag.textContent = item.tag;
   tag.title = item.category ?? '';
   meta.append(tag);
+
+  if (item.ids.length > 1) {
+    const repeat = document.createElement('span');
+    repeat.className = 'repeat';
+    repeat.textContent = `×${item.ids.length}`;
+    repeat.title = `原站同一天有 ${item.ids.length} 則同標題公告，這裡只列第一則`;
+    meta.append(repeat);
+  }
 
   if (showSource) {
     const source = document.createElement('span');
@@ -423,7 +563,8 @@ function svgIcon(id) {
   return svg;
 }
 
-function matches(item) {
+function matches(item, { ignoreOnlyNew = false } = {}) {
+  if (state.onlyNew && !ignoreOnlyNew && !isNew(item)) return false;
   // 保證金量最大，預設收起來；但使用者若主動點選「保證金」分類，就以分類篩選為準。
   if (!state.showMargin && item.tag === '保證金' && !state.tags.has('保證金')) return false;
   if (state.tags.size > 0 && !state.tags.has(item.tag)) return false;
@@ -460,6 +601,20 @@ function formatDay(day) {
   return `${day}（週${weekday}）`;
 }
 
+/** 「10/22 19:04」：台灣時間，月日與時分。 */
+function formatStamp(iso) {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return '';
+  return date.toLocaleString('zh-TW', {
+    timeZone: 'Asia/Taipei',
+    month: 'numeric',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  });
+}
+
 function allSources() {
   return [...(state.data.exchanges ?? []), ...(state.data.brokers ?? [])];
 }
@@ -484,5 +639,26 @@ function savePrefs() {
     );
   } catch {
     /* 存不了就算了，下次重新載入回到預設值 */
+  }
+}
+
+function loadVisit() {
+  try {
+    const visit = JSON.parse(localStorage.getItem(VISIT_KEY) ?? 'null');
+    return visit && typeof visit.at === 'string' && Array.isArray(visit.ids) ? visit : null;
+  } catch {
+    return null;
+  }
+}
+
+/** 只存目前資料裡有的 id，下架的公告不必記，紀錄不會越積越大。 */
+function saveVisit() {
+  try {
+    localStorage.setItem(
+      VISIT_KEY,
+      JSON.stringify({ at: new Date().toISOString(), ids: allItems().flatMap((it) => it.ids) })
+    );
+  } catch {
+    /* 存不了就沒有新公告標記，看板本身照常運作 */
   }
 }
