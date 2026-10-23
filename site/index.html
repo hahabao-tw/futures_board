@@ -23,8 +23,6 @@
     />
   </head>
   <body>
-    <canvas id="candles" aria-hidden="true"></canvas>
-
     <!-- SVG 圖示庫：介面不用 emoji 當圖示 -->
     <svg width="0" height="0" style="position: absolute" aria-hidden="true">
       <symbol id="i-chart" viewBox="0 0 24 24">
@@ -44,6 +42,7 @@
     </svg>
 
     <p class="notice" id="excluded-notice"></p>
+    <p class="alert" id="source-alert" role="status" hidden></p>
 
     <header class="topbar">
       <div class="topbar__row">
@@ -82,6 +81,14 @@
       <div class="filters">
         <div class="chips" id="tag-filters" role="group" aria-label="分類篩選"></div>
         <div class="filters__right">
+          <!-- 「上次造訪之後」才出現的公告；第一次造訪時整組隱藏 -->
+          <div class="fresh" id="fresh" hidden>
+            <button id="only-new" type="button" class="chip chip--new" aria-pressed="false">
+              只看新公告 <span id="new-count" class="tabular">0</span>
+            </button>
+            <button id="mark-seen" type="button" class="ghost ghost--small">標為已看過</button>
+            <span id="since-info" class="since tabular"></span>
+          </div>
           <label class="switch">
             <input type="checkbox" id="show-margin" />
             <span id="show-margin-label">顯示保證金公告</span>
@@ -94,10 +101,10 @@
       <p class="empty" id="empty" hidden>沒有符合條件的公告。</p>
 
       <div id="board-wrap">
-        <h2 class="section-label section-label--exchange">臺灣期貨交易所</h2>
+        <h2 class="section-label section-label--exchange" id="exchange-label">臺灣期貨交易所</h2>
         <section id="exchange" class="exchange"></section>
 
-        <h2 class="section-label">期貨商 · 依名稱筆劃排序</h2>
+        <h2 class="section-label" id="board-label">期貨商 · 依名稱筆劃排序</h2>
         <section id="board" class="board"></section>
       </div>
 
@@ -111,12 +118,10 @@
       <p id="schedule-info"></p>
       <p>
         資料由臺灣期貨交易所與各期貨商官網公告區自動彙整，僅供快速瀏覽；正式內容以各官網為準。
-        <span id="broker-errors" class="errors"></span>
       </p>
       <p>管理員信箱：<a href="mailto:7537@entrust.com.tw">7537@entrust.com.tw</a></p>
     </footer>
 
-    <script src="candles.js" type="module"></script>
     <script src="app.js" type="module"></script>
   </body>
 </html>
